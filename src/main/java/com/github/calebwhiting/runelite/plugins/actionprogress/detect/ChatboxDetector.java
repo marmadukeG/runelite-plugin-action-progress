@@ -113,6 +113,7 @@ public class ChatboxDetector extends ActionDetector
             new Product(CRAFT_STRING_JEWELLERY, TOPAZ_AMULET, new Ingredient(TOPAZ_AMULET_U), new Ingredient(BALL_OF_WOOL)),
             new Product(CRAFT_STRING_JEWELLERY, EMERALD_AMULET, new Ingredient(EMERALD_AMULET_U), new Ingredient(BALL_OF_WOOL)),
             new Product(CRAFT_STRING_JEWELLERY, RUBY_AMULET, new Ingredient(RUBY_AMULET_U), new Ingredient(BALL_OF_WOOL)),
+            new Product(CRAFT_STRING_JEWELLERY, GOLD_AMULET, new Ingredient(GOLD_AMULET_U), new Ingredient(BALL_OF_WOOL)),
             new Product(CRAFT_STRING_JEWELLERY, DIAMOND_AMULET, new Ingredient(DIAMOND_AMULET_U), new Ingredient(BALL_OF_WOOL)),
             new Product(CRAFT_STRING_JEWELLERY, DRAGONSTONE_AMULET, new Ingredient(DRAGONSTONE_AMULET_U), new Ingredient(BALL_OF_WOOL)),
             new Product(CRAFT_STRING_JEWELLERY, ONYX_AMULET, new Ingredient(ONYX_AMULET_U), new Ingredient(BALL_OF_WOOL)),
