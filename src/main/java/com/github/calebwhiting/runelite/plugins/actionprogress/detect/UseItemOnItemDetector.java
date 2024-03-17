@@ -67,7 +67,9 @@ public class UseItemOnItemDetector extends ActionDetector
 		for (Product product : PRODUCTS) {
 			if (product.isMadeWith(items)) {
 				int amount = product.getMakeProductCount(this.inventoryManager);
-				this.actionManager.setAction(product.getAction(), amount, product.getProductId());
+				if (amount > 0) {
+					this.actionManager.setAction(product.getAction(), amount, product.getProductId());
+				}
 			}
 		}
 	}

@@ -14,6 +14,7 @@ import net.runelite.api.Varbits;
 import net.runelite.api.annotations.Varbit;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public interface Magic
 {
@@ -827,6 +828,61 @@ public interface Magic
 		public static ChargeOrbSpell byProduct(int productId)
 		{
 			return Arrays.stream(values()).filter(x -> x.product == productId).findFirst().orElse(null);
+		}
+	}
+
+	@Getter
+	enum EnchantCrossbowBoltSpell
+	{
+		ENCHANT_OPAL_BOLT(ItemID.OPAL_BOLTS_E, ItemID.OPAL_BOLTS, new RuneRequirement(Rune.AIR, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_OPAL_DRAGON_BOLT(ItemID.OPAL_DRAGON_BOLTS_E, ItemID.OPAL_DRAGON_BOLTS, new RuneRequirement(Rune.AIR, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_JADE_BOLT(ItemID.JADE_BOLTS_E, ItemID.JADE_BOLTS, new RuneRequirement(Rune.EARTH, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_JADE_DRAGON_BOLT(ItemID.JADE_DRAGON_BOLTS_E, ItemID.JADE_DRAGON_BOLTS, new RuneRequirement(Rune.EARTH, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_PEARL_BOLT(ItemID.PEARL_BOLTS_E, ItemID.PEARL_BOLTS, new RuneRequirement(Rune.WATER, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_PEARL_DRAGON_BOLT(ItemID.PEARL_DRAGON_BOLTS_E, ItemID.PEARL_DRAGON_BOLTS, new RuneRequirement(Rune.WATER, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_TOPAZ_BOLT(ItemID.TOPAZ_BOLTS_E, ItemID.TOPAZ_BOLTS, new RuneRequirement(Rune.FIRE, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_TOPAZ_DRAGON_BOLT(ItemID.TOPAZ_DRAGON_BOLTS_E, ItemID.TOPAZ_DRAGON_BOLTS, new RuneRequirement(Rune.FIRE, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_SAPPHIRE_BOLT(ItemID.SAPPHIRE_BOLTS_E, ItemID.SAPPHIRE_BOLTS, new RuneRequirement(Rune.WATER, 1),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.MIND, 1)),
+		ENCHANT_SAPPHIRE_DRAGON_BOLT(ItemID.SAPPHIRE_DRAGON_BOLTS_E, ItemID.SAPPHIRE_DRAGON_BOLTS, new RuneRequirement(Rune.WATER, 1),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.MIND, 1)),
+		ENCHANT_EMERALD_BOLT(ItemID.EMERALD_BOLTS_E, ItemID.EMERALD_BOLTS, new RuneRequirement(Rune.AIR, 3),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.NATURE, 1)),
+		ENCHANT_EMERALD_DRAGON_BOLT(ItemID.EMERALD_DRAGON_BOLTS_E, ItemID.EMERALD_DRAGON_BOLTS, new RuneRequirement(Rune.AIR, 3),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.NATURE, 1)),
+		ENCHANT_RUBY_BOLT(ItemID.RUBY_BOLTS_E, ItemID.RUBY_BOLTS, new RuneRequirement(Rune.FIRE, 5),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.BLOOD, 1)),
+		ENCHANT_RUBY_DRAGON_BOLT(ItemID.RUBY_DRAGON_BOLTS_E, ItemID.RUBY_DRAGON_BOLTS, new RuneRequirement(Rune.FIRE, 5),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.BLOOD, 1)),
+		ENCHANT_DIAMOND_BOLT(ItemID.DIAMOND_BOLTS_E, ItemID.DIAMOND_BOLTS, new RuneRequirement(Rune.EARTH, 10),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.LAW, 2)),
+		ENCHANT_DIAMOND_BOLT2(ItemID.DIAMOND_BOLTS_E_23649, ItemID.DIAMOND_BOLTS, new RuneRequirement(Rune.EARTH, 10),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.LAW, 2)),
+		ENCHANT_DIAMOND_DRAGON_BOLT(ItemID.DIAMOND_DRAGON_BOLTS_E, ItemID.DIAMOND_DRAGON_BOLTS, new RuneRequirement(Rune.EARTH, 10),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.LAW, 2)),
+		ENCHANT_DRAGONSTONE_BOLT(ItemID.DRAGONSTONE_BOLTS_E, ItemID.DRAGONSTONE_BOLTS, new RuneRequirement(Rune.EARTH, 15),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.SOUL, 1)),
+		ENCHANT_DRAGONSTONE_DRAGON_BOLT(ItemID.DRAGONSTONE_DRAGON_BOLTS_E, ItemID.DRAGONSTONE_DRAGON_BOLTS, new RuneRequirement(Rune.EARTH, 15),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.SOUL, 1)),
+		ENCHANT_ONYX_BOLT(ItemID.ONYX_BOLTS_E, ItemID.ONYX_BOLTS, new RuneRequirement(Rune.FIRE, 20),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.DEATH, 1)),
+		ENCHANT_ONYX_DRAGON_BOLT(ItemID.ONYX_DRAGON_BOLTS_E, ItemID.ONYX_DRAGON_BOLTS, new RuneRequirement(Rune.FIRE, 20),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.DEATH, 1));
+
+		private final int product;
+
+		private final int source;
+
+		private final RuneRequirement[] runeRequirements;
+
+		EnchantCrossbowBoltSpell(int productId, int sourceId, RuneRequirement... runeRequirements)
+		{
+			this.product = productId;
+			this.source = sourceId;
+			this.runeRequirements = runeRequirements;
+		}
+
+		public static int getAvailableCasts(Client client, int productId)
+		{
+			EnchantCrossbowBoltSpell spell = Arrays.stream(values()).filter(x -> x.product == productId).findFirst().orElse(null);
+			Objects.requireNonNull(spell, "No enchant crossbow bolt spell found for product: " + productId);
+
+			int min = Integer.MAX_VALUE;
+
+			for (RuneRequirement requirement : spell.getRuneRequirements()) {
+				int amount = requirement.getRune().countAvailable(client);
+				min = Math.min(min, amount / requirement.getAmount());
+			}
+
+			ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+			return min = Math.min(min, inventory.count(spell.getSource()) / 10);
 		}
 	}
 

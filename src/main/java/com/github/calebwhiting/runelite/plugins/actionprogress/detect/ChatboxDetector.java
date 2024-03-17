@@ -209,6 +209,17 @@ public class ChatboxDetector extends ActionDetector
 			new Product(FLETCH_DART, RUNE_DART, new Ingredient(RUNE_DART_TIP, 10), new Ingredient(FEATHER, 10)),
 			new Product(FLETCH_DART, AMETHYST_DART, new Ingredient(AMETHYST_DART_TIP, 10), new Ingredient(FEATHER, 10)),
 			new Product(FLETCH_DART, DRAGON_DART, new Ingredient(DRAGON_DART_TIP, 10), new Ingredient(FEATHER, 10)),
+			new Product(FLETCH_ATTACH, OPAL_BOLTS, new Ingredient(BRONZE_BOLTS,10) , new Ingredient(OPAL_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, JADE_BOLTS, new Ingredient(BLURITE_BOLTS,10) , new Ingredient(JADE_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, PEARL_BOLTS, new Ingredient(IRON_BOLTS,10) , new Ingredient(PEARL_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, TOPAZ_BOLTS, new Ingredient(STEEL_BOLTS,10) , new Ingredient(TOPAZ_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, BARBED_BOLTS, new Ingredient(BRONZE_BOLTS, 1) , new Ingredient(BARB_BOLTTIPS,1)),
+			new Product(FLETCH_ATTACH, SAPPHIRE_BOLTS, new Ingredient(MITHRIL_BOLTS,10) , new Ingredient(SAPPHIRE_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, EMERALD_BOLTS, new Ingredient(MITHRIL_BOLTS,10) , new Ingredient(EMERALD_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, RUBY_BOLTS, new Ingredient(ADAMANT_BOLTS,10) , new Ingredient(RUBY_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, DIAMOND_BOLTS, new Ingredient(ADAMANT_BOLTS,10) , new Ingredient(DIAMOND_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, DRAGONSTONE_BOLTS, new Ingredient(RUNITE_BOLTS,10) , new Ingredient(DRAGONSTONE_BOLT_TIPS,10)),
+			new Product(FLETCH_ATTACH, ONYX_BOLTS, new Ingredient(RUNITE_BOLTS,10) , new Ingredient(ONYX_BOLT_TIPS,10)),
 			new Product(FARM_ULTRA_COMPOST, ULTRACOMPOST, new Ingredient(VOLCANIC_ASH,2), new Ingredient(SUPERCOMPOST))
             // @formatter:on
 	};
@@ -300,7 +311,7 @@ public class ChatboxDetector extends ActionDetector
 		/*
 		 * Magic
 		 */
-		this.registerAction(MAGIC_ENCHANT_BOLTS, Fletching.ENCHANTED_BOLTS);
+		//this.registerAction(MAGIC_ENCHANT_BOLTS, Fletching.ENCHANTED_BOLTS);
 	}
 
 	private void onQuestionAnswered()
@@ -328,6 +339,14 @@ public class ChatboxDetector extends ActionDetector
 						currentProductId
 				);
 				break;
+			case "How many sets of bolts to enchant?":
+				int enchantCrossbolBoltAmount = Magic.EnchantCrossbowBoltSpell.getAvailableCasts(client, currentProductId);
+				this.actionManager.setAction(
+						Action.MAGIC_ENCHANT_BOLTS,
+						Math.min(amount, enchantCrossbolBoltAmount),
+						currentProductId
+				);
+				break;
 			case "How many would you like to string?": // Fletching/Stringing
 			case "What would you like to string?": // Fletching/Stringing
 			case "What would you like to make?": // Various
@@ -343,7 +362,13 @@ public class ChatboxDetector extends ActionDetector
 				Product recipe = Recipe.forProduct(MULTI_MATERIAL_PRODUCTS, currentProductId);
 				if (recipe != null) {
 					amount = Math.min(amount, recipe.getMakeProductCount(this.inventoryManager));
-					this.actionManager.setAction(recipe.getAction(), amount, recipe.getIsSelectingIngredientAsProduct() ? recipe.getProductId() : currentProductId);
+					if (amount > 0) {
+						this.actionManager.setAction(
+								recipe.getAction(),
+								amount,
+								recipe.getIsSelectingIngredientAsProduct() ? recipe.getProductId() : currentProductId
+						);
+					}
 				} else {
 					this.setActionByItemId(currentProductId, amount);
 				}
