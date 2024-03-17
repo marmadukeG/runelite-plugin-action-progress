@@ -53,13 +53,17 @@ public enum Action
 	SMELTING("Smelting", ActionProgressConfig::smithSmelting, ActionIcon.SPRITE_SMITHING, 5),
 	SMELTING_CANNONBALLS("Casting", ActionProgressConfig::smithCannonballs, ActionIcon.SPRITE_SMITHING, 7, 10),
 	SMITHING("Forging", ActionProgressConfig::smithSmithing, ActionIcon.SPRITE_SMITHING, 5),
+	SMITHING_WITH_SMITH_OUTFIT("Forging", ActionProgressConfig::smithSmithing, ActionIcon.SPRITE_SMITHING, 5),
 	TEMPOROSS_COOKING("Cooking", ActionProgressConfig::temporossCooking, ActionIcon.SPRITE_COOKING, 4, 3),
 	TEMPOROSS_FILL_CRATE("Filling", ActionProgressConfig::temporossFiring, ActionIcon.SPRITE_FISHING, 2),
 	TEMPOROSS_REWARD_POOL("Fishing", ActionProgressConfig::temporossRewardPool, ActionIcon.SPRITE_FISHING, 1, 3),
 	WINTERTODT_WOODCUTTING("Chopping", ActionProgressConfig::wintertodtWoodcutting, ActionIcon.SPRITE_WOODCUTTING, 2, 3),
 	WINTERTODT_FIREMAKING("Lighting", ActionProgressConfig::wintertodtLighting, ActionIcon.SPRITE_FIREMAKING, 4, 3),
 	WINTERTODT_FLETCHING("Cutting", ActionProgressConfig::wintertodtFletching, ActionIcon.SPRITE_FLETCHING, 4, 4),
-	FARM_ULTRA_COMPOST("Mixing",ActionProgressConfig::farmUltraCompost, ActionIcon.SPRITE_FARMING,2);
+	FARM_ULTRA_COMPOST("Mixing",ActionProgressConfig::farmUltraCompost, ActionIcon.SPRITE_FARMING,2),
+	GUARDIAN_OF_THE_RIFT_CRAFTING("Crafting", ActionProgressConfig::guardianOfTheRiftCrafting, ActionIcon.SPRITE_CRAFTING, 1),
+	//Timing might be off. Not on the wiki. Will need to confirm when having more rewards points
+	GUARDIAN_OF_THE_RIFT_REWARD_POOL("Searching", ActionProgressConfig::guardianOfTheRiftRewardPool, ActionIcon.SPRITE_GUARDIAN_OF_THE_RIFT_REWARD, 3); 
 
 	private final String description;
 

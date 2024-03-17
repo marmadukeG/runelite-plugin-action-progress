@@ -31,26 +31,20 @@ public class ItemClickDetector extends ActionDetector
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked evt)
 	{
-		if (evt.getMenuAction() != MenuAction.CC_OP) {
+		if (evt.getMenuAction() != MenuAction.CC_OP || !evt.getMenuOption().toLowerCase().equals("clean")) {
 			return;
 		}
-		if (evt.getParam1() != InterfaceID.INVENTORY) {
-			return;
-		}
+		int itemID = evt.getItemId();
 		ItemContainer inventory = this.client.getItemContainer(InventoryID.INVENTORY);
-		if (inventory == null) {
+		if (inventory == null || !inventory.contains(itemID)) {
 			return;
 		}
-		Item item = inventory.getItem(evt.getParam0());
-		if (item == null) {
-			return;
-		}
-		Action action = (Action) this.itemActions.get(item.getId());
+		Action action = this.itemActions.get(itemID);
 		if (action == null) {
 			return;
 		}
-		int amount = this.inventoryManager.getItemCountById(item.getId());
-		this.actionManager.setAction(action, amount, item.getId());
+		int amount = this.inventoryManager.getItemCountById(itemID);
+		this.actionManager.setAction(action, amount, itemID);
 	}
 
 }
