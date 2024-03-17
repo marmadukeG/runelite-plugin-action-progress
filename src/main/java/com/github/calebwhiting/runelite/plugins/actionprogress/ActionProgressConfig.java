@@ -470,6 +470,17 @@ public interface ActionProgressConfig extends Config
 	}
 
 	@ConfigItem(
+			name = "String jewellery spell",
+			keyName = "magic.string-jewellery",
+			description = "Enable/Disable monitoring string jewellery spell.",
+			section = MAGIC
+	)
+	default boolean magicStringJewellery()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			name = "Plank make spell",
 			keyName = "magic.plank-make",
 			description = "Enable/Disable monitoring plank make spell.",

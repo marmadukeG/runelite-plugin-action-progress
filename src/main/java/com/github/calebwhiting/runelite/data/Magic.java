@@ -588,10 +588,17 @@ public interface Magic
 	@Getter
 	enum LunarSpell implements Spell
 	{
-		
+		STRING_JEWELLERY(
+				"String Jewellery",
+				26,
+				80,
+				new RuneRequirement(Rune.EARTH, 10),
+				new RuneRequirement(Rune.ASTRAL, 2),
+				new RuneRequirement(Rune.WATER, 5)
+		),
 		PLANK_MAKE(
 			"Plank Make",
-			33,
+			34,
 			86,
 			new RuneRequirement(Rune.EARTH, 15),
 			new RuneRequirement(Rune.ASTRAL, 2),
@@ -651,7 +658,36 @@ public interface Magic
 			this.cost = cost;
 		}
 	}
-	
+
+	@Getter
+	enum StringJewellerySpell
+	{
+		STRING_STRUNG_RABBIT_FOOT(LunarSpell.STRING_JEWELLERY, ItemID.RABBIT_FOOT),
+		STRING_HOLY_SYMBOL(LunarSpell.STRING_JEWELLERY, ItemID.UNSTRUNG_SYMBOL),
+		STRING_UNHOLY_SYMBOL(LunarSpell.STRING_JEWELLERY, ItemID.UNSTRUNG_EMBLEM),
+		STRING_OPAL_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.OPAL_AMULET_U),
+		STRING_JADE_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.JADE_AMULET_U),
+		STRING_SAPPHIRE_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.SAPPHIRE_AMULET_U),
+		STRING_TOPAZ_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.TOPAZ_AMULET_U),
+		STRING_EMERALD_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.EMERALD_AMULET_U),
+		STRING_RUBY_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.RUBY_AMULET_U),
+		STRING_GOLD_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.GOLD_AMULET_U),
+		STRING_DIAMOND_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.DIAMOND_AMULET_U),
+		STRING_DRAGONSTONE_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.DRAGONSTONE_AMULET_U),
+		STRING_ONYX_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.ONYX_AMULET_U),
+		STRING_ZENYTE_AMULET(LunarSpell.STRING_JEWELLERY, ItemID.ZENYTE_AMULET_U);
+
+		private final Spell spell;
+
+		private final int jewelleryItemId;
+
+		StringJewellerySpell(Spell spell, int jewelleryItemId)
+		{
+			this.spell = spell;
+			this.jewelleryItemId = jewelleryItemId;
+		}
+	}
+
 	@Getter
 	enum EnchantSpell
 	{

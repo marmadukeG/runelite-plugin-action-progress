@@ -48,6 +48,7 @@ public enum Action
 	MAGIC_ENCHANT_BOLTS("Enchanting", ActionProgressConfig::magicEnchantBolts, ActionIcon.SPRITE_MAGIC, 1, 3),
 	MAGIC_ENCHANT_JEWELLERY("Enchanting", ActionProgressConfig::magicEnchantJewellery, ActionIcon.SPRITE_MAGIC, 0, 7),
 	MAGIC_CHARGE_ORB("Charging", ActionProgressConfig::magicChargeOrbs, ActionIcon.SPRITE_MAGIC, 3, 6),
+	MAGIC_STRING_JEWELLERY("Stringing jewellery", ActionProgressConfig::magicStringJewellery, ActionIcon.SPRITE_MAGIC, 3),
 	MAGIC_PLANK_MAKE("Making plank", ActionProgressConfig::magicPlankMake, ActionIcon.SPRITE_MAGIC, 3, 6),
 	SMELTING("Smelting", ActionProgressConfig::smithSmelting, ActionIcon.SPRITE_SMITHING, 5),
 	SMELTING_CANNONBALLS("Casting", ActionProgressConfig::smithCannonballs, ActionIcon.SPRITE_SMITHING, 7, 10),
