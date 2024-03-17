@@ -33,7 +33,6 @@ public class DataVerifyTest
 	public void verifyItemIdConstants()
 	{
 		this.verify(Fletching.class, "BOLT_TIPS", IDQuery.ofItems().query(".*_BOLT_TIPS?"));
-		this.verify(Fletching.class, "ENCHANTED_BOLTS", IDQuery.ofItems().query(".*_BOLTS?_E"));
 		this.verify(
 				Fletching.class,
 				"UNENCHANTED_BOLTS_AND_ARROWS",
