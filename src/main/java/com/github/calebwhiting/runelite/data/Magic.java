@@ -14,6 +14,7 @@ import net.runelite.api.Varbits;
 import net.runelite.api.annotations.Varbit;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public interface Magic
 {
@@ -42,7 +43,7 @@ public interface Magic
 				new RuneRequirement(Rune.WATER, 3)
 		),
 		ENCHANT_CROSSBOW_BOLT(
-				"Enchant Crossbow Bolt",
+				"Crossbow Bolt Enchantments",
 				3,
 				4
 		),
@@ -56,14 +57,14 @@ public interface Magic
 		),
 		LVL_1_ENCHANT(
 				"Lvl-1 Enchant",
-				5,
+				6,
 				7,
 				new RuneRequirement(Rune.COSMIC, 1),
 				new RuneRequirement(Rune.WATER, 1)
 		),
 		EARTH_STRIKE(
 				"Earth Strike",
-				6,
+				7,
 				9,
 				new RuneRequirement(Rune.AIR, 1),
 				new RuneRequirement(Rune.EARTH, 2),
@@ -71,7 +72,7 @@ public interface Magic
 		),
 		WEAKEN(
 				"Weaken",
-				7,
+				8,
 				11,
 				new RuneRequirement(Rune.BODY, 1),
 				new RuneRequirement(Rune.EARTH, 2),
@@ -79,7 +80,7 @@ public interface Magic
 		),
 		FIRE_STRIKE(
 				"Fire Strike",
-				8,
+				9,
 				13,
 				new RuneRequirement(Rune.AIR, 2),
 				new RuneRequirement(Rune.FIRE, 3),
@@ -87,7 +88,7 @@ public interface Magic
 		),
 		BONES_TO_BANANAS(
 				"Bones to Bananas",
-				9,
+				10,
 				15,
 				new RuneRequirement(Rune.EARTH, 2),
 				new RuneRequirement(Rune.NATURE, 1),
@@ -95,14 +96,14 @@ public interface Magic
 		),
 		WIND_BOLT(
 				"Wind Bolt",
-				10,
+				11,
 				17,
 				new RuneRequirement(Rune.AIR, 2),
 				new RuneRequirement(Rune.CHAOS, 1)
 		),
 		CURSE(
 				"Curse",
-				11,
+				12,
 				19,
 				new RuneRequirement(Rune.BODY, 1),
 				new RuneRequirement(Rune.EARTH, 3),
@@ -110,7 +111,7 @@ public interface Magic
 		),
 		BIND(
 				"Bind",
-				12,
+				13,
 				20,
 				new RuneRequirement(Rune.EARTH, 3),
 				new RuneRequirement(Rune.NATURE, 2),
@@ -118,14 +119,14 @@ public interface Magic
 		),
 		LOW_LEVEL_ALCHEMY(
 				"Low Level Alchemy",
-				13,
+				14,
 				21,
 				new RuneRequirement(Rune.FIRE, 3),
 				new RuneRequirement(Rune.NATURE, 1)
 		),
 		WATER_BOLT(
 				"Water Bolt",
-				14,
+				15,
 				23,
 				new RuneRequirement(Rune.AIR, 2),
 				new RuneRequirement(Rune.CHAOS, 1),
@@ -133,7 +134,7 @@ public interface Magic
 		),
 		VARROCK_TELEPORT(
 				"Varrock Teleport",
-				15,
+				16,
 				25,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.FIRE, 1),
@@ -141,14 +142,14 @@ public interface Magic
 		),
 		LVL_2_ENCHANT(
 				"Lvl-2 Enchant",
-				16,
+				17,
 				27,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.COSMIC, 1)
 		),
 		EARTH_BOLT(
 				"Earth Bolt",
-				17,
+				18,
 				29,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.CHAOS, 1),
@@ -156,7 +157,7 @@ public interface Magic
 		),
 		LUMBRIDGE_TELEPORT(
 				"Lumbridge Teleport",
-				18,
+				19,
 				31,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.EARTH, 1),
@@ -164,14 +165,14 @@ public interface Magic
 		),
 		TELEKINETIC_GRAB(
 				"Telekinetic Grab",
-				19,
+				20,
 				33,
 				new RuneRequirement(Rune.AIR, 1),
 				new RuneRequirement(Rune.LAW, 1)
 		),
 		FIRE_BOLT(
 				"Fire Bolt",
-				20,
+				21,
 				35,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.CHAOS, 1),
@@ -179,7 +180,7 @@ public interface Magic
 		),
 		FALADOR_TELEPORT(
 				"Falador Teleport",
-				21,
+				22,
 				37,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.LAW, 1),
@@ -187,7 +188,7 @@ public interface Magic
 		),
 		CRUMBLE_UNDEAD(
 				"Crumble Undead",
-				22,
+				23,
 				39,
 				new RuneRequirement(Rune.AIR, 2),
 				new RuneRequirement(Rune.CHAOS, 1),
@@ -195,7 +196,7 @@ public interface Magic
 		),
 		TELEPORT_TO_HOUSE(
 				"Teleport to House",
-				23,
+				24,
 				40,
 				new RuneRequirement(Rune.AIR, 1),
 				new RuneRequirement(Rune.EARTH, 1),
@@ -203,50 +204,59 @@ public interface Magic
 		),
 		WIND_BLAST(
 				"Wind Blast",
-				24,
+				25,
 				41,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.DEATH, 1)
 		),
 		SUPERHEAT_ITEM(
 				"Superheat Item",
-				25,
+				26,
 				43,
 				new RuneRequirement(Rune.FIRE, 4),
 				new RuneRequirement(Rune.NATURE, 1)
 		),
 		CAMELOT_TELEPORT(
 				"Camelot Teleport",
-				26,
+				27,
 				45,
 				new RuneRequirement(Rune.AIR, 5),
 				new RuneRequirement(Rune.LAW, 1)
 		),
 		WATER_BLAST(
 				"Water Blast",
-				27,
+				28,
 				47,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.DEATH, 1),
 				new RuneRequirement(Rune.WATER, 3)
 		),
+		KOUREND_CASTLE_TELEPORT(
+				"Kourend Castle Teleport",
+				29,
+				48,
+				new RuneRequirement(Rune.FIRE, 5),
+				new RuneRequirement(Rune.LAW, 2),
+				new RuneRequirement(Rune.SOUL, 2),
+				new RuneRequirement(Rune.WATER, 4)
+		),
 		LVL_3_ENCHANT(
 				"Lvl-3 Enchant",
-				28,
+				30,
 				49,
 				new RuneRequirement(Rune.COSMIC, 1),
 				new RuneRequirement(Rune.FIRE, 5)
 		),
 		IBAN_BLAST(
 				"Iban Blast",
-				29,
+				31,
 				50,
 				new RuneRequirement(Rune.DEATH, 1),
 				new RuneRequirement(Rune.FIRE, 5)
 		),
 		SNARE(
 				"Snare",
-				30,
+				32,
 				50,
 				new RuneRequirement(Rune.EARTH, 4),
 				new RuneRequirement(Rune.NATURE, 3),
@@ -254,21 +264,21 @@ public interface Magic
 		),
 		MAGIC_DART(
 				"Magic Dart",
-				31,
+				33,
 				50,
 				new RuneRequirement(Rune.DEATH, 1),
 				new RuneRequirement(Rune.MIND, 4)
 		),
 		ARDOUGNE_TELEPORT(
 				"Ardougne Teleport",
-				32,
+				34,
 				51,
 				new RuneRequirement(Rune.LAW, 2),
 				new RuneRequirement(Rune.WATER, 2)
 		),
 		EARTH_BLAST(
 				"Earth Blast",
-				33,
+				35,
 				53,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.DEATH, 1),
@@ -283,28 +293,28 @@ public interface Magic
 		),
 		CHARGE_WATER_ORB(
 				"Charge Water Orb",
-				35,
+				38,
 				56,
 				new RuneRequirement(Rune.COSMIC, 3),
 				new RuneRequirement(Rune.WATER, 30)
 		),
 		LVL_4_ENCHANT(
 				"Lvl-4 Enchant",
-				36,
+				39,
 				57,
 				new RuneRequirement(Rune.COSMIC, 1),
 				new RuneRequirement(Rune.EARTH, 10)
 		),
 		WATCHTOWER_TELEPORT(
 				"Watchtower Teleport",
-				37,
+				40,
 				58,
 				new RuneRequirement(Rune.EARTH, 2),
 				new RuneRequirement(Rune.LAW, 2)
 		),
 		FIRE_BLAST(
 				"Fire Blast",
-				38,
+				41,
 				59,
 				new RuneRequirement(Rune.AIR, 4),
 				new RuneRequirement(Rune.DEATH, 1),
@@ -312,14 +322,14 @@ public interface Magic
 		),
 		CHARGE_EARTH_ORB(
 				"Charge Earth Orb",
-				39,
+				42,
 				60,
 				new RuneRequirement(Rune.COSMIC, 3),
 				new RuneRequirement(Rune.EARTH, 30)
 		),
 		BONES_TO_PEACHES(
 				"Bones to Peaches",
-				40,
+				43,
 				60,
 				new RuneRequirement(Rune.EARTH, 2),
 				new RuneRequirement(Rune.NATURE, 2),
@@ -327,7 +337,7 @@ public interface Magic
 		),
 		SARADOMIN_STRIKE(
 				"Saradomin Strike",
-				41,
+				44,
 				60,
 				new RuneRequirement(Rune.AIR, 4),
 				new RuneRequirement(Rune.BLOOD, 2),
@@ -335,7 +345,7 @@ public interface Magic
 		),
 		CLAWS_OF_GUTHIX(
 				"Claws of Guthix",
-				42,
+				45,
 				60,
 				new RuneRequirement(Rune.AIR, 4),
 				new RuneRequirement(Rune.BLOOD, 2),
@@ -343,7 +353,7 @@ public interface Magic
 		),
 		FLAMES_OF_ZAMORAK(
 				"Flames of Zamorak",
-				43,
+				46,
 				60,
 				new RuneRequirement(Rune.AIR, 1),
 				new RuneRequirement(Rune.BLOOD, 2),
@@ -351,28 +361,28 @@ public interface Magic
 		),
 		TROLLHEIM_TELEPORT(
 				"Trollheim Teleport",
-				44,
+				47,
 				61,
 				new RuneRequirement(Rune.FIRE, 2),
 				new RuneRequirement(Rune.LAW, 2)
 		),
 		WIND_WAVE(
 				"Wind Wave",
-				45,
+				48,
 				62,
 				new RuneRequirement(Rune.AIR, 5),
 				new RuneRequirement(Rune.BLOOD, 1)
 		),
 		CHARGE_FIRE_ORB(
 				"Charge Fire Orb",
-				46,
+				49,
 				63,
 				new RuneRequirement(Rune.COSMIC, 3),
 				new RuneRequirement(Rune.FIRE, 30)
 		),
 		APE_ATOLL_TELEPORT(
 				"Ape Atoll Teleport",
-				47,
+				50,
 				64,
 				new RuneRequirement(Rune.FIRE, 2),
 				new RuneRequirement(Rune.LAW, 2),
@@ -380,7 +390,7 @@ public interface Magic
 		),
 		WATER_WAVE(
 				"Water Wave",
-				48,
+				51,
 				65,
 				new RuneRequirement(Rune.AIR, 5),
 				new RuneRequirement(Rune.BLOOD, 1),
@@ -388,14 +398,14 @@ public interface Magic
 		),
 		CHARGE_AIR_ORB(
 				"Charge Air Orb",
-				49,
+				52,
 				66,
 				new RuneRequirement(Rune.AIR, 30),
 				new RuneRequirement(Rune.COSMIC, 3)
 		),
 		VULNERABILITY(
 				"Vulnerability",
-				50,
+				53,
 				66,
 				new RuneRequirement(Rune.EARTH, 5),
 				new RuneRequirement(Rune.SOUL, 1),
@@ -403,24 +413,15 @@ public interface Magic
 		),
 		LVL_5_ENCHANT(
 				"Lvl-5 Enchant",
-				51,
+				54,
 				68,
 				new RuneRequirement(Rune.COSMIC, 1),
 				new RuneRequirement(Rune.EARTH, 15),
 				new RuneRequirement(Rune.WATER, 15)
 		),
-		KOUREND_CASTLE_TELEPORT(
-				"Kourend Castle Teleport",
-				52,
-				69,
-				new RuneRequirement(Rune.FIRE, 5),
-				new RuneRequirement(Rune.LAW, 2),
-				new RuneRequirement(Rune.SOUL, 2),
-				new RuneRequirement(Rune.WATER, 4)
-		),
 		EARTH_WAVE(
 				"Earth Wave",
-				53,
+				55,
 				70,
 				new RuneRequirement(Rune.AIR, 5),
 				new RuneRequirement(Rune.BLOOD, 1),
@@ -428,7 +429,7 @@ public interface Magic
 		),
 		ENFEEBLE(
 				"Enfeeble",
-				54,
+				56,
 				73,
 				new RuneRequirement(Rune.EARTH, 8),
 				new RuneRequirement(Rune.SOUL, 1),
@@ -436,7 +437,7 @@ public interface Magic
 		),
 		TELEOTHER_LUMBRIDGE(
 				"Teleother Lumbridge",
-				55,
+				57,
 				74,
 				new RuneRequirement(Rune.EARTH, 1),
 				new RuneRequirement(Rune.LAW, 1),
@@ -444,7 +445,7 @@ public interface Magic
 		),
 		FIRE_WAVE(
 				"Fire Wave",
-				56,
+				58,
 				75,
 				new RuneRequirement(Rune.AIR, 5),
 				new RuneRequirement(Rune.BLOOD, 1),
@@ -452,7 +453,7 @@ public interface Magic
 		),
 		ENTANGLE(
 				"Entangle",
-				57,
+				59,
 				79,
 				new RuneRequirement(Rune.EARTH, 5),
 				new RuneRequirement(Rune.NATURE, 4),
@@ -460,7 +461,7 @@ public interface Magic
 		),
 		STUN(
 				"Stun",
-				58,
+				60,
 				80,
 				new RuneRequirement(Rune.EARTH, 12),
 				new RuneRequirement(Rune.SOUL, 1),
@@ -468,7 +469,7 @@ public interface Magic
 		),
 		CHARGE(
 				"Charge",
-				59,
+				61,
 				80,
 				new RuneRequirement(Rune.AIR, 3),
 				new RuneRequirement(Rune.BLOOD, 3),
@@ -476,14 +477,14 @@ public interface Magic
 		),
 		WIND_SURGE(
 				"Wind Surge",
-				60,
+				62,
 				81,
 				new RuneRequirement(Rune.AIR, 7),
 				new RuneRequirement(Rune.WRATH, 1)
 		),
 		TELEOTHER_FALADOR(
 				"Teleother Falador",
-				61,
+				63,
 				82,
 				new RuneRequirement(Rune.LAW, 1),
 				new RuneRequirement(Rune.SOUL, 1),
@@ -491,7 +492,7 @@ public interface Magic
 		),
 		WATER_SURGE(
 				"Water Surge",
-				62,
+				64,
 				85,
 				new RuneRequirement(Rune.AIR, 7),
 				new RuneRequirement(Rune.WATER, 10),
@@ -499,7 +500,7 @@ public interface Magic
 		),
 		TELE_BLOCK(
 				"Tele Block",
-				63,
+				65,
 				85,
 				new RuneRequirement(Rune.CHAOS, 1),
 				new RuneRequirement(Rune.DEATH, 1),
@@ -507,7 +508,7 @@ public interface Magic
 		),
 		TELEPORT_TO_BOUNTY_TARGET(
 				"Teleport to Bounty Target",
-				64,
+				66,
 				85,
 				new RuneRequirement(Rune.CHAOS, 1),
 				new RuneRequirement(Rune.DEATH, 1),
@@ -515,7 +516,7 @@ public interface Magic
 		),
 		LVL_6_ENCHANT(
 				"Lvl-6 Enchant",
-				65,
+				67,
 				87,
 				new RuneRequirement(Rune.COSMIC, 1),
 				new RuneRequirement(Rune.EARTH, 20),
@@ -523,14 +524,14 @@ public interface Magic
 		),
 		TELEOTHER_CAMELOT(
 				"Teleother Camelot",
-				66,
+				68,
 				90,
 				new RuneRequirement(Rune.LAW, 1),
 				new RuneRequirement(Rune.SOUL, 2)
 		),
 		EARTH_SURGE(
 				"Earth Surge",
-				67,
+				69,
 				90,
 				new RuneRequirement(Rune.AIR, 7),
 				new RuneRequirement(Rune.EARTH, 10),
@@ -538,7 +539,7 @@ public interface Magic
 		),
 		LVL_7_ENCHANT(
 				"Lvl-7 Enchant",
-				68,
+				70,
 				93,
 				new RuneRequirement(Rune.BLOOD, 20),
 				new RuneRequirement(Rune.COSMIC, 1),
@@ -546,7 +547,7 @@ public interface Magic
 		),
 		FIRE_SURGE(
 				"Fire Surge",
-				69,
+				71,
 				95,
 				new RuneRequirement(Rune.AIR, 7),
 				new RuneRequirement(Rune.FIRE, 10),
@@ -555,7 +556,7 @@ public interface Magic
 
 		private static final int STANDARD_SPELLBOOK_GROUP_ID = 218;
 
-		private static final int STANDARD_SPELLBOOK_FIRST_SPELL_INDEX = 6;
+		private static final int STANDARD_SPELLBOOK_FIRST_SPELL_INDEX = 7;
 
 		private final String name;
 
@@ -590,24 +591,24 @@ public interface Magic
 	{
 		STRING_JEWELLERY(
 				"String Jewellery",
-				26,
+				22,
 				80,
 				new RuneRequirement(Rune.EARTH, 10),
 				new RuneRequirement(Rune.ASTRAL, 2),
 				new RuneRequirement(Rune.WATER, 5)
 		),
 		PLANK_MAKE(
-			"Plank Make",
-			34,
-			86,
-			new RuneRequirement(Rune.EARTH, 15),
-			new RuneRequirement(Rune.ASTRAL, 2),
-			new RuneRequirement(Rune.NATURE, 1)
+				"Plank Make",
+				29,
+				86,
+				new RuneRequirement(Rune.EARTH, 15),
+				new RuneRequirement(Rune.ASTRAL, 2),
+				new RuneRequirement(Rune.NATURE, 1)
 		);
 
 		private static final int LUNAR_SPELLBOOK_GROUP_ID = 218;
 
-		private static final int LUNAR_SPELLBOOK_FIRST_SPELL_INDEX = 101;
+		private static final int LUNAR_SPELLBOOK_FIRST_SPELL_INDEX = 104;
 
 		private final String name;
 
@@ -827,6 +828,61 @@ public interface Magic
 		public static ChargeOrbSpell byProduct(int productId)
 		{
 			return Arrays.stream(values()).filter(x -> x.product == productId).findFirst().orElse(null);
+		}
+	}
+
+	@Getter
+	enum EnchantCrossbowBoltSpell
+	{
+		ENCHANT_OPAL_BOLT(ItemID.OPAL_BOLTS_E, ItemID.OPAL_BOLTS, new RuneRequirement(Rune.AIR, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_OPAL_DRAGON_BOLT(ItemID.OPAL_DRAGON_BOLTS_E, ItemID.OPAL_DRAGON_BOLTS, new RuneRequirement(Rune.AIR, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_JADE_BOLT(ItemID.JADE_BOLTS_E, ItemID.JADE_BOLTS, new RuneRequirement(Rune.EARTH, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_JADE_DRAGON_BOLT(ItemID.JADE_DRAGON_BOLTS_E, ItemID.JADE_DRAGON_BOLTS, new RuneRequirement(Rune.EARTH, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_PEARL_BOLT(ItemID.PEARL_BOLTS_E, ItemID.PEARL_BOLTS, new RuneRequirement(Rune.WATER, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_PEARL_DRAGON_BOLT(ItemID.PEARL_DRAGON_BOLTS_E, ItemID.PEARL_DRAGON_BOLTS, new RuneRequirement(Rune.WATER, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_TOPAZ_BOLT(ItemID.TOPAZ_BOLTS_E, ItemID.TOPAZ_BOLTS, new RuneRequirement(Rune.FIRE, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_TOPAZ_DRAGON_BOLT(ItemID.TOPAZ_DRAGON_BOLTS_E, ItemID.TOPAZ_DRAGON_BOLTS, new RuneRequirement(Rune.FIRE, 2),new RuneRequirement(Rune.COSMIC, 1)),
+		ENCHANT_SAPPHIRE_BOLT(ItemID.SAPPHIRE_BOLTS_E, ItemID.SAPPHIRE_BOLTS, new RuneRequirement(Rune.WATER, 1),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.MIND, 1)),
+		ENCHANT_SAPPHIRE_DRAGON_BOLT(ItemID.SAPPHIRE_DRAGON_BOLTS_E, ItemID.SAPPHIRE_DRAGON_BOLTS, new RuneRequirement(Rune.WATER, 1),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.MIND, 1)),
+		ENCHANT_EMERALD_BOLT(ItemID.EMERALD_BOLTS_E, ItemID.EMERALD_BOLTS, new RuneRequirement(Rune.AIR, 3),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.NATURE, 1)),
+		ENCHANT_EMERALD_DRAGON_BOLT(ItemID.EMERALD_DRAGON_BOLTS_E, ItemID.EMERALD_DRAGON_BOLTS, new RuneRequirement(Rune.AIR, 3),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.NATURE, 1)),
+		ENCHANT_RUBY_BOLT(ItemID.RUBY_BOLTS_E, ItemID.RUBY_BOLTS, new RuneRequirement(Rune.FIRE, 5),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.BLOOD, 1)),
+		ENCHANT_RUBY_DRAGON_BOLT(ItemID.RUBY_DRAGON_BOLTS_E, ItemID.RUBY_DRAGON_BOLTS, new RuneRequirement(Rune.FIRE, 5),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.BLOOD, 1)),
+		ENCHANT_DIAMOND_BOLT(ItemID.DIAMOND_BOLTS_E, ItemID.DIAMOND_BOLTS, new RuneRequirement(Rune.EARTH, 10),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.LAW, 2)),
+		ENCHANT_DIAMOND_BOLT2(ItemID.DIAMOND_BOLTS_E_23649, ItemID.DIAMOND_BOLTS, new RuneRequirement(Rune.EARTH, 10),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.LAW, 2)),
+		ENCHANT_DIAMOND_DRAGON_BOLT(ItemID.DIAMOND_DRAGON_BOLTS_E, ItemID.DIAMOND_DRAGON_BOLTS, new RuneRequirement(Rune.EARTH, 10),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.LAW, 2)),
+		ENCHANT_DRAGONSTONE_BOLT(ItemID.DRAGONSTONE_BOLTS_E, ItemID.DRAGONSTONE_BOLTS, new RuneRequirement(Rune.EARTH, 15),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.SOUL, 1)),
+		ENCHANT_DRAGONSTONE_DRAGON_BOLT(ItemID.DRAGONSTONE_DRAGON_BOLTS_E, ItemID.DRAGONSTONE_DRAGON_BOLTS, new RuneRequirement(Rune.EARTH, 15),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.SOUL, 1)),
+		ENCHANT_ONYX_BOLT(ItemID.ONYX_BOLTS_E, ItemID.ONYX_BOLTS, new RuneRequirement(Rune.FIRE, 20),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.DEATH, 1)),
+		ENCHANT_ONYX_DRAGON_BOLT(ItemID.ONYX_DRAGON_BOLTS_E, ItemID.ONYX_DRAGON_BOLTS, new RuneRequirement(Rune.FIRE, 20),new RuneRequirement(Rune.COSMIC, 1), new RuneRequirement(Rune.DEATH, 1));
+
+		private final int product;
+
+		private final int source;
+
+		private final RuneRequirement[] runeRequirements;
+
+		EnchantCrossbowBoltSpell(int productId, int sourceId, RuneRequirement... runeRequirements)
+		{
+			this.product = productId;
+			this.source = sourceId;
+			this.runeRequirements = runeRequirements;
+		}
+
+		public static int getAvailableCasts(Client client, int productId)
+		{
+			EnchantCrossbowBoltSpell spell = Arrays.stream(values()).filter(x -> x.product == productId).findFirst().orElse(null);
+			Objects.requireNonNull(spell, "No enchant crossbow bolt spell found for product: " + productId);
+
+			int min = Integer.MAX_VALUE;
+
+			for (RuneRequirement requirement : spell.getRuneRequirements()) {
+				int amount = requirement.getRune().countAvailable(client);
+				min = Math.min(min, amount / requirement.getAmount());
+			}
+
+			ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+			return min = Math.min(min, inventory.count(spell.getSource()) / 10);
 		}
 	}
 

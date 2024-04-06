@@ -65,6 +65,10 @@ public class Recipe
 	{
 		int amount = Integer.MAX_VALUE;
 		for (Ingredient requirement : this.getRequirements()) {
+			if (inventoryManager.getItems().noneMatch(item -> item.getId() == requirement.getItemId())) {
+				return 0;
+			}
+
 			if (requirement.isConsumed()) {
 				if (this.getTool() != null && inventoryManager.getItems().anyMatch(item -> item.getId() == tool.getItemId())){
 					amount = Math.min(

@@ -81,6 +81,10 @@ public class ActionManager
 			log.debug("ignoring single action");
 			return;
 		}
+		if (actionCount == 0){
+			log.debug("Nothing to do");
+			return;
+		}
 		this.currentAction = action;
 		this.currentProductId = itemId;
 		this.actionStartTick = this.client.getTickCount();
