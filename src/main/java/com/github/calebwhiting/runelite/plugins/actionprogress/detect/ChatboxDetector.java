@@ -209,7 +209,18 @@ public class ChatboxDetector extends ActionDetector
 			new Product(FLETCH_DART, RUNE_DART, new Ingredient(RUNE_DART_TIP, 10), new Ingredient(FEATHER, 10)),
 			new Product(FLETCH_DART, AMETHYST_DART, new Ingredient(AMETHYST_DART_TIP, 10), new Ingredient(FEATHER, 10)),
 			new Product(FLETCH_DART, DRAGON_DART, new Ingredient(DRAGON_DART_TIP, 10), new Ingredient(FEATHER, 10)),
-			new Product(FARM_ULTRA_COMPOST, ULTRACOMPOST, new Ingredient(VOLCANIC_ASH,2), new Ingredient(SUPERCOMPOST))
+			new Product(FIREMAKING_CAMPFIRE, ACHEY_TREE_LOGS, new Ingredient(ACHEY_TREE_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, LOGS, new Ingredient(LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, OAK_LOGS, new Ingredient(OAK_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, WILLOW_LOGS, new Ingredient(WILLOW_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, TEAK_LOGS, new Ingredient(TEAK_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, ARCTIC_PINE_LOGS, new Ingredient(ARCTIC_PINE_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, MAPLE_LOGS, new Ingredient(MAPLE_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, MAHOGANY_LOGS, new Ingredient(MAHOGANY_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, YEW_LOGS, new Ingredient(YEW_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, BLISTERWOOD_LOGS, new Ingredient(BLISTERWOOD_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, MAGIC_LOGS, new Ingredient(MAGIC_LOGS)),
+			new Product(FIREMAKING_CAMPFIRE, REDWOOD_LOGS, new Ingredient(REDWOOD_LOGS))
             // @formatter:on
 	};
 
