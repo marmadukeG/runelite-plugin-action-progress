@@ -633,5 +633,16 @@ public interface ActionProgressConfig extends Config
 	{
 		return true;
 	}
-	
+
+	@ConfigItem(
+			name = "Tending to campfire",
+			keyName = "misc.campfire",
+			description = "Enable/Disable monitoring campfire tending.",
+			section = MISCELLANEOUS
+	)
+	default boolean campfire()
+	{
+		return true;
+	}
+
 }
