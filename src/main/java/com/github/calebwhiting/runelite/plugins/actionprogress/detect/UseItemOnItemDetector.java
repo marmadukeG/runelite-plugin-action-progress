@@ -9,6 +9,7 @@ import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import static com.github.calebwhiting.runelite.plugins.actionprogress.Action.GRIND;
@@ -64,7 +65,21 @@ public class UseItemOnItemDetector extends ActionDetector
 								.mapToObj(inventory::getItem)
 								.filter(n -> n!= null)
 								.toArray(Item[]::new);
+		outerloop:
 		for (Product product : PRODUCTS) {
+
+			//Not clean, but prevents the action bar from showing if an item is used on the same item, or double-clicked
+			Ingredient[] ingredients = product.getRequirements();
+			if(ingredients.length > 1) {
+				for (Ingredient ingredient : ingredients) {
+					ItemComposition itemName = client.getItemDefinition(ingredient.getItemId());
+					String[] evtSourceTarget = evt.getMenuTarget().split("->");
+					if (evtSourceTarget[0].toLowerCase().contains(itemName.getName().toLowerCase()) && evtSourceTarget[1].toLowerCase().contains(itemName.getName().toLowerCase())){
+						continue outerloop;
+					}
+				}
+			}
+
 			if (product.isMadeWith(items)) {
 				int amount = product.getMakeProductCount(this.inventoryManager);
 				if (amount > 0) {
