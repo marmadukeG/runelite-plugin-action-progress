@@ -13,12 +13,14 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import static com.github.calebwhiting.runelite.plugins.actionprogress.Action.GRIND;
+import static com.github.calebwhiting.runelite.plugins.actionprogress.Action.GRIND_DARK_ESSENCE;
 import static net.runelite.api.ItemID.*;
 
 public class UseItemOnItemDetector extends ActionDetector
 {
 
 	private static final Ingredient PESTLE_AND_MORTAR = new Ingredient(ItemID.PESTLE_AND_MORTAR, 1, false);
+	private static final Ingredient CHISEL = new Ingredient(ItemID.CHISEL, 1, false);
 
 	private static final Product[] PRODUCTS = {
 			new Product(GRIND, GROUND_ASHES, PESTLE_AND_MORTAR, new Ingredient(ASHES)),
@@ -43,7 +45,8 @@ public class UseItemOnItemDetector extends ActionDetector
 			new Product(GRIND, GROUND_SEAWEED, PESTLE_AND_MORTAR, new Ingredient(SEAWEED)),
 			new Product(GRIND, GROUND_TOOTH, PESTLE_AND_MORTAR, new Ingredient(SUQAH_TOOTH)),
 			new Product(GRIND, UNICORN_HORN_DUST, PESTLE_AND_MORTAR, new Ingredient(UNICORN_HORN)),
-			new Product(GRIND, CRUSHED_SUPERIOR_DRAGON_BONES, PESTLE_AND_MORTAR, new Ingredient(SUPERIOR_DRAGON_BONES))
+			new Product(GRIND, CRUSHED_SUPERIOR_DRAGON_BONES, PESTLE_AND_MORTAR, new Ingredient(SUPERIOR_DRAGON_BONES)),
+			new Product(GRIND_DARK_ESSENCE, DARK_ESSENCE_FRAGMENTS, CHISEL, new Ingredient(DARK_ESSENCE_BLOCK))
 	};
 
 	@Inject private InventoryManager inventoryManager;

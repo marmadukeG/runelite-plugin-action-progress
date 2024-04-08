@@ -44,6 +44,7 @@ Displays an indicator showing how much progress you've made on your current acti
 - Miscellaneous
 	- Collecting sand
 	- Grinding items
+    - Feeding logs to campfire
 
 ## Changes
 - `1.13`
