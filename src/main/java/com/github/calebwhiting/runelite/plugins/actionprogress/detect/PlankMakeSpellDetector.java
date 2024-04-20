@@ -36,10 +36,13 @@ public class PlankMakeSpellDetector extends ActionDetector
 		if (inventory == null) {
 			return;
 		}
+		if (!evt.getMenuTarget().contains("<col=00ff00>Plank Make</col><col=ffffff> ->")) {
+			return;
+		}
 		for (Magic.PlankMakeSpell plankMakeSpell : Magic.PlankMakeSpell.values()) {
 			Magic.Spell spell = plankMakeSpell.getSpell();
 			Widget widget = this.client.getWidget(spell.getWidgetId());
-			if (widget == null || widget.getBorderType() != 0) {
+			if (widget == null || widget.getBorderType() != 2) {
 				continue;
 			}
 			int itemId = evt.getItemId();
