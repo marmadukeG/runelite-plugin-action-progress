@@ -70,18 +70,15 @@ public class Recipe
 			}
 
 			if (requirement.isConsumed()) {
-				if (this.getTool() != null && inventoryManager.getItems().anyMatch(item -> item.getId() == tool.getItemId())){
-					amount = Math.min(
-							amount,
-							getMakeProductCountWithTool(inventoryManager.getItemCountById(requirement.getItemId()) / requirement.getAmount())
-					);
+				if (this.getTool() != null && !inventoryManager.getItems().anyMatch(item -> item.getId() == tool.getItemId())){
+					return 0;
 				}
-				else{
-					amount = Math.min(
-							amount,
-							inventoryManager.getItemCountById(requirement.getItemId()) / requirement.getAmount()
-					);
-				}
+				amount = Math.min(
+						amount,
+						this.getTool() != null
+						? getMakeProductCountWithTool(inventoryManager.getItemCountById(requirement.getItemId()) / requirement.getAmount())
+						: inventoryManager.getItemCountById(requirement.getItemId()) / requirement.getAmount()
+				);
 			}
 		}
 		return amount;

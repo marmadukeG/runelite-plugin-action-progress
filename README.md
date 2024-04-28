@@ -47,9 +47,13 @@ Displays an indicator showing how much progress you've made on your current acti
     - Feeding logs to campfire
 
 ## Changes
+- `1.14`
+  	- Fix plank make (hopefully for good) - Thanks @druyang
+  	- Add support for dark essence fragment 
+  	- Add support for campfire tending 
 - `1.13`
-        - Check for smith outfit for smithing timing
-        - Compact mode
+	- Check for smith outfit for smithing timing
+	- Compact mode
 - `1.12`
 	- Add support for stringing items
 	- Fix gold crafting not showing progress bar

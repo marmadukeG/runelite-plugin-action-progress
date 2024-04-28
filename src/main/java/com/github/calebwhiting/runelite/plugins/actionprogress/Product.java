@@ -3,6 +3,7 @@ package com.github.calebwhiting.runelite.plugins.actionprogress;
 import com.github.calebwhiting.runelite.data.Ingredient;
 import com.github.calebwhiting.runelite.data.Recipe;
 import lombok.Getter;
+import net.runelite.api.Client;
 import net.runelite.api.Item;
 
 import java.util.Arrays;
@@ -40,5 +41,10 @@ public class Product extends Recipe
 										   .mapToInt(Ingredient::getItemId)
 										   .anyMatch(i -> i == id));
 	}
-
+	public boolean IngredientsIsIncludedIn(String ingredientString, Client client){
+		return Stream.of(getRequirements())
+					 .anyMatch(ing -> ingredientString.toLowerCase().contains(
+							 client.getItemDefinition(ing.getItemId()).getName().toLowerCase())
+					 );
+	}
 }
