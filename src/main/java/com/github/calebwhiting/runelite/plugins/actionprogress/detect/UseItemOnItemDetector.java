@@ -65,7 +65,7 @@ public class UseItemOnItemDetector extends ActionDetector
 			new Product(GRIND_BONE_SHARDS, 	BLESSED_BONE_SHARDS, 			new Ingredient[]{ new Ingredient(BLESSED_BONE_STATUETTE)}, 										CHISEL),
 			new Product(GRIND_BONE_SHARDS, 	BLESSED_BONE_SHARDS, 			new Ingredient[]{ new Ingredient(BLESSED_BONE_STATUETTE_29340)}, 								CHISEL), //Might not be required. Not sure what the difference is
 			new Product(GRIND_BONE_SHARDS, 	BLESSED_BONE_SHARDS, 			new Ingredient[]{ new Ingredient(BLESSED_BONE_STATUETTE_29342)}, 								CHISEL), //Might not be required. Not sure what the difference is
-			new Product(SUNFIRE_WINE, 		JUG_OF_SUNFIRE_WINE,			new Ingredient[]{ new Ingredient(JUG_OF_WINE), new Ingredient(SUNFIRE_SPLINTERS, 2)}, 	CHISEL)
+			new Product(SUNFIRE_WINE, 		JUG_OF_SUNFIRE_WINE,			new Ingredient[]{ new Ingredient(JUG_OF_WINE), new Ingredient(SUNFIRE_SPLINTERS, 2)}, 	PESTLE_AND_MORTAR)
 	};
 
 	@Inject private InventoryManager inventoryManager;
