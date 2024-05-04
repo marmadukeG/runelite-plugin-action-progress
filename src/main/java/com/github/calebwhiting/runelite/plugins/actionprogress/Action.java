@@ -42,6 +42,7 @@ public enum Action
 	GRIND("Grinding", ActionProgressConfig::grinding, ActionIcon.SPRITE_TOTAL, 0, 2, 3),
 	GRIND_BONE_SHARDS("Grinding", ActionProgressConfig::grinding, ActionIcon.SPRITE_TOTAL, 2, 4),
 	GRIND_DARK_ESSENCE("Grinding", ActionProgressConfig::grinding, ActionIcon.SPRITE_TOTAL, 1, 3, 4),
+	SUNFIRE_WINE("Grinding", ActionProgressConfig::grinding, ActionIcon.SPRITE_TOTAL, 0, 4),
 	HERB_CLEAN("Cleaning", ActionProgressConfig::herbCleaning, ActionIcon.SPRITE_HERBLORE, 0, 2),
 	HERB_MIX_POTIONS("Mixing", ActionProgressConfig::herbPotions, ActionIcon.SPRITE_HERBLORE, 2),
 	HERB_MIX_TAR("Mixing", ActionProgressConfig::herbTar, ActionIcon.SPRITE_HERBLORE, 2, 3),
