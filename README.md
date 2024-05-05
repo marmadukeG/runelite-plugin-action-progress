@@ -47,6 +47,8 @@ Displays an indicator showing how much progress you've made on your current acti
     - Feeding logs to campfire
 
 ## Changes
+- `1.15`
+  - Add support for jug of sunfire Wine
 - `1.14`
   	- Fix plank make (hopefully for good) - Thanks @druyang
   	- Add support for dark essence fragment 
