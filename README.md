@@ -1,5 +1,6 @@
-> [NOTE]
-> Anyone willing to help with fixing bugs and updating this plugin is more than welcome to reach out
+> Feel free to make suggestions for new actions to be supported
+
+>Anyone willing to help with fixing bugs and updating this plugin is more than welcome to reach out
 
 <div align="center">
 <h1>Action Progress Plugin</h1>
@@ -9,50 +10,64 @@ Displays an indicator showing how much progress you've made on your current acti
 <img alt="img.png" src="demo.gif" style="align: center;"/>
 </div>
 
-## Supported features
+## Supported actions
 - Cooking
 	- Cutting fruits
 	- Mixing pastry & wine
 	- Topping pizza
 - Smithing
-	- Cannonballs
 	- Smelting
-	- Smithing comming soon
+    - Smithing
+    - Cannonballs
 - Crafting
-	- Battlestaves
 	- Casting gold & silver
 	- Molten glass
-	- Cutting gems
 	- Glassblowing
-	- Leather-wroking
+    - Stringing jewellery
+    - Cutting gems
+	- Leather-working
+    - Battlestaves
+    - Weaving
 	- Crafting leather shields
-	- Stringing jewellery
-	- Weaving
+    - Amethyst heads and tips	
 - Fletching
 	- Arrows & bolts
 	- Creating bows, crossbows & shields
+    - Javelins
 - Herblore
 	- Herb cleaning
 	- Mixing potions
 	- Mixing tar
 - Magic
-	- Charge orb
-	- Creating tablets
 	- Enchant bolt/jewellery
-	- Creating planks
+    - Charge orb
+	- String jewellery
+    - Creating planks
+    - Creating tablets  
+- Farming
+   - Creating ultracompost 
 - Tempoross
+    - Cooking
+    - Firing
+- GotR
+    - Essence crafting
+    - Reward searching
 - Miscellaneous
 	- Collecting sand
 	- Grinding items
-    - Feeding logs to campfire
+      - Blessed bone shards
+      - Jug of sunfire Wine
+      - Dark essence fragment
+    - Campfire tending
+    
 
 ## Changes
 - `1.15`
-  - Add support for jug of sunfire Wine
+	- Add support for jug of sunfire wine
 - `1.14`
-  	- Fix plank make (hopefully for good) - Thanks @druyang
-  	- Add support for dark essence fragment 
-  	- Add support for campfire tending 
+    - Fix plank make (hopefully for good) - Thanks @druyang
+    - Add support for dark essence fragment 
+    - Add support for campfire tending 
 - `1.13`
 	- Check for smith outfit for smithing timing
 	- Compact mode
