@@ -27,6 +27,7 @@ public enum Action
 	CRAFT_SHIELD("Crafting", ActionProgressConfig::craftShields, ActionIcon.SPRITE_CRAFTING, 5),
 	CRAFT_AMETHYST_HEADS_AND_TIPS("Crafting", ActionProgressConfig::craftHeadsAndTips,ActionIcon.SPRITE_CRAFTING,2),
 	FLETCH_ATTACH("Attaching", ActionProgressConfig::fletchArrowsAndBolts, ActionIcon.SPRITE_FLETCHING, 2),
+	FLETCH_ATTACH_3T("Attaching", ActionProgressConfig::fletchArrowsAndBolts, ActionIcon.SPRITE_FLETCHING, 3),
 	FLETCH_CUT_ARROW_SHAFT("Cutting", ActionProgressConfig::fletchArrowsAndBolts, ActionIcon.SPRITE_FLETCHING, 3),
 	FLETCH_CUT_BOW("Cutting", ActionProgressConfig::fletchBows, ActionIcon.SPRITE_FLETCHING, 3),
 	FLETCH_CUT_TIPS("Cutting", ActionProgressConfig::fletchArrowsAndBolts, ActionIcon.SPRITE_FLETCHING, 5),
