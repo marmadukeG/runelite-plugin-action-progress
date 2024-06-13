@@ -93,7 +93,8 @@ public class ChatboxDetector extends ActionDetector
             new Product(SMELTING, MITHRIL_BAR, new Ingredient(MITHRIL_ORE), new Ingredient(COAL, 4)),
             new Product(SMELTING, ADAMANTITE_BAR, new Ingredient(ADAMANTITE_ORE), new Ingredient(COAL, 6)),
             new Product(SMELTING, RUNITE_BAR, new Ingredient(RUNITE_ORE), new Ingredient(COAL, 8)),
-            new Product(SMELTING_CANNONBALLS, CANNONBALL, new Ingredient[]{new Ingredient(STEEL_BAR)}, new Ingredient(DOUBLE_AMMO_MOULD)),
+			new Product(SMELTING_CANNONBALLS, CANNONBALL, new Ingredient[]{new Ingredient(STEEL_BAR)}, new Ingredient(AMMO_MOULD)),
+			new Product(SMELTING_CANNONBALLS, CANNONBALL, new Ingredient[]{new Ingredient(STEEL_BAR)}, new Ingredient(DOUBLE_AMMO_MOULD)),
             new Product(CRAFT_CUT_GEMS, OPAL, true, new Ingredient(UNCUT_OPAL)),
             new Product(CRAFT_CUT_GEMS, JADE, true, new Ingredient(UNCUT_JADE)),
             new Product(CRAFT_CUT_GEMS, RED_TOPAZ, true, new Ingredient(UNCUT_RED_TOPAZ)),
@@ -371,7 +372,7 @@ public class ChatboxDetector extends ActionDetector
 			case "How many sets of 15 do you wish to feather?": // Headless arrows
 			case "?":
 			default:
-				Product recipe = Recipe.forProduct(MULTI_MATERIAL_PRODUCTS, currentProductId);
+				Product recipe = Recipe.forProduct(MULTI_MATERIAL_PRODUCTS, currentProductId, this.inventoryManager);
 				if (recipe != null) {
 					amount = Math.min(amount, recipe.getMakeProductCount(this.inventoryManager));
 					if (amount > 0) {

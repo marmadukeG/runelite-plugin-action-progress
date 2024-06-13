@@ -44,17 +44,17 @@ public class Recipe
 		this.isSelectingIngredientAsProduct = isSelectingIngredientAsProduct;
 	}
 
-	public static <T extends Recipe> T forProduct(T[] all, int productId)
+	public static <T extends Recipe> T forProduct(T[] all, int productId, InventoryManager inventoryManager)
 	{
 		for (T v : all) {
 			if (v.getIsSelectingIngredientAsProduct()) {
 				for (Ingredient ingredient : v.getRequirements()){
-					if(ingredient.getItemId() == productId){
+					if(ingredient.getItemId() == productId && (v.getTool() == null || inventoryManager.getItems().anyMatch(item -> item.getId() == v.getTool().getItemId()))){
 						return v;
 					}
 				}
 			}
-			else if (v.getProductId() == productId) {
+			else if (v.getProductId() == productId && (v.getTool() == null || inventoryManager.getItems().anyMatch(item -> item.getId() == v.getTool().getItemId()))) {
 				return v;
 			}
 		}
@@ -88,9 +88,15 @@ public class Recipe
 		int toolAmount = Integer.MAX_VALUE;
 		switch (productId) {
 			case CANNONBALL:
-				//Round up since the double ammo mould is able to smelt with only one silver bar
-				toolAmount = (int)Math.ceil((double)amount / 2);
+				if (tool != null && tool.getItemId() == DOUBLE_AMMO_MOULD){
+					//Round up since the double ammo mould is able to smelt with only one silver bar
+					toolAmount = (int)Math.ceil((double)amount / 2);
+				}
+				else{
+					toolAmount = amount;
+				}
 				break;
+
 			default:
 				toolAmount = amount;
 				break;
