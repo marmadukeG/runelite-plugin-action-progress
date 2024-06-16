@@ -9,6 +9,10 @@ import net.runelite.api.*;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
+
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import static com.github.calebwhiting.runelite.plugins.actionprogress.Action.*;
 import static net.runelite.api.ItemID.*;
@@ -93,24 +97,21 @@ public class UseItemOnItemDetector extends ActionDetector
 		if (inventory == null|| widget == null) {
 			return;
 		}
+
+		//Given evt.getMenuTarget() is in the following format <col=ff9040>Bird nest</col><col=ffffff> -> <col=ff9040>Bird nest</col>
+		//The code below will check if the source and the target are the same, and return if it is the case
+		Pattern r = Pattern.compile("<.*>(.*)</.*><.*>(.*)</.*>");
+		Matcher m = r.matcher(evt.getMenuTarget());
+		if (m.find() && Objects.equals(m.group(1), m.group(2))){
+			return;
+		}
+
 		Item[] items = IntStream.of(widget.getId(), evt.getParam0())
 								.mapToObj(inventory::getItem)
 								.filter(n -> n!= null)
 								.toArray(Item[]::new);
-		outerloop:
-		for (Product product : PRODUCTS) {
-			//Not clean, but prevents the action bar from showing if an item is used on the same item, or double-clicked
-			Ingredient[] ingredients = product.getRequirements();
-			if(ingredients.length > 1) {
-				for (Ingredient ingredient : ingredients) {
-					ItemComposition itemName = client.getItemDefinition(ingredient.getItemId());
-					String[] evtSourceTarget = evt.getMenuTarget().split("->");
-					if (evtSourceTarget[0].toLowerCase().contains(itemName.getName().toLowerCase()) && evtSourceTarget[1].toLowerCase().contains(itemName.getName().toLowerCase())){
-						continue outerloop;
-					}
-				}
-			}
 
+		for (Product product : PRODUCTS) {
 			if (product.isMadeWith(items)) {
 				int amount = product.getMakeProductCount(this.inventoryManager);
 				if (amount > 0) {
@@ -119,5 +120,4 @@ public class UseItemOnItemDetector extends ActionDetector
 			}
 		}
 	}
-
 }
