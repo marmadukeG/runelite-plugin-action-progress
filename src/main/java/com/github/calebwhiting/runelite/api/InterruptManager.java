@@ -65,7 +65,7 @@ public class InterruptManager
 			InterfaceID.DEPOSIT_BOX, InterfaceID.ACHIEVEMENT_DIARY, InterfaceID.ADVENTURE_LOG,
 			InterfaceID.BANK_INVENTORY, InterfaceID.DIALOG_NPC, InterfaceID.DIALOG_PLAYER,
 			InterfaceID.DIALOG_OPTION, InterfaceID.DIALOG_SPRITE, InterfaceID.DESTROY_ITEM,
-			InterfaceID.DUEL_INVENTORY, InterfaceID.DUEL_INVENTORY_OTHER,
+			InterfaceID.DUEL_INVENTORY, InterfaceID.TOA_RAID,
 			InterfaceID.EXPLORERS_RING, InterfaceID.FAIRY_RING,
 			InterfaceID.TRAWLER_REWARD, InterfaceID.BARROWS_REWARD,
 			InterfaceID.GRAND_EXCHANGE, InterfaceID.KILL_LOG, InterfaceID.GUIDE_PRICES,
