@@ -1,5 +1,6 @@
 package com.github.calebwhiting.runelite.data;
 
+import com.github.calebwhiting.runelite.plugins.actionprogress.CoalBag;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,10 @@ public interface Smithing
 			int count = Integer.MAX_VALUE;
 			for (OreRequirement requirement : this.requirements) {
 				int oreCount = inventory.count(requirement.getOre().getItemId());
+				if (requirement.getOre().getItemId() == ItemID.COAL)
+				{
+					oreCount += CoalBag.getAmount();
+				}
 				if (oreCount == 0) {
 					return 0;
 				}

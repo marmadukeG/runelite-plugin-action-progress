@@ -12,7 +12,11 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import net.runelite.api.events.ChatMessage;
+import net.runelite.api.events.ClientTick;
+import net.runelite.api.widgets.Widget;
 import net.runelite.client.Notifier;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -90,6 +94,7 @@ public class ActionProgressPlugin extends Plugin
 			this.clientThread.invoke(instance::setup);
 		}
 		this.eventHandlers.forEach(this.eventBus::register);
+		CoalBag.setUnknownAmount();
 	}
 
 	@Override
@@ -106,6 +111,27 @@ public class ActionProgressPlugin extends Plugin
 			this.clientThread.invoke(instance::shutDown);
 		}
 		this.eventHandlers.clear();
+	}
+
+	@Subscribe
+	public void onChatMessage(ChatMessage event)
+	{
+		if (event.getType() == ChatMessageType.GAMEMESSAGE)
+		{
+			CoalBag.updateAmount(event.getMessage());
+		}
+	}
+
+	@Subscribe
+	public void onClientTick(ClientTick clientTick)
+	{
+		// running this under onClientTick as it is possible to close the widget on the same tick that it opens.
+		// because the coal bag sometimes displays the emptied amount message as a widget, we need to check for that here.
+		Widget coalBagWidget = client.getWidget(12648450);
+		if (coalBagWidget != null)
+		{
+			CoalBag.updateAmount(coalBagWidget.getText());
+		}
 	}
 
 	@Subscribe

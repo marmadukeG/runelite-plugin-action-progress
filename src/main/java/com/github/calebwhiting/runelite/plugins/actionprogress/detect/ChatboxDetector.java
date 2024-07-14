@@ -303,7 +303,7 @@ public class ChatboxDetector extends ActionDetector
 		 * Fletching
 		 */
 		this.registerAction(FLETCH_ATTACH, Fletching.UNENCHANTED_BOLTS_AND_ARROWS);
-		this.registerAction(FLETCH_ATTACH_3T, KEBBIT_BOLTS);
+		this.registerAction(FLETCH_ATTACH_3T, KEBBIT_BOLTS, MOONLIGHT_ANTELOPE_ANTLER, SUNLIGHT_ANTELOPE_ANTLER);
 		this.registerAction(FLETCH_ATTACH, HEADLESS_ARROW, FLIGHTED_OGRE_ARROW, AMETHYST_BROAD_BOLTS, AMETHYST_ARROW);
 		this.registerAction(FLETCH_JAVELIN, Fletching.JAVELINS);
 		this.registerAction(FLETCH_CUT_ARROW_SHAFT, ARROW_SHAFT, BRUMA_KINDLING, OGRE_ARROW_SHAFT);
@@ -361,10 +361,21 @@ public class ChatboxDetector extends ActionDetector
 						currentProductId
 				);
 				break;
+			case "What would you like to smelt?": // Smelting bars
+				Product smithingProduct = Recipe.forProduct(MULTI_MATERIAL_PRODUCTS, currentProductId, this.inventoryManager);
+				if (smithingProduct != null) {
+					if (amount > 0) {
+						this.actionManager.setAction(
+								smithingProduct.getAction(),
+								amount,
+								smithingProduct.getIsSelectingIngredientAsProduct() ? smithingProduct.getProductId() : currentProductId
+						);
+					}
+				}
+				break;
 			case "How many would you like to string?": // Fletching/Stringing
 			case "What would you like to string?": // Fletching/Stringing
 			case "What would you like to make?": // Various
-			case "What would you like to smelt?": // Smelting bars
 			case "How many batches would you like?":
 			case "How many bars would you like to smith?": // Cannonballs
 			case "How many gems would you like to cut?": // Cutting gems
