@@ -37,7 +37,6 @@ public interface Smithing
 
 		public int countAvailableOres(Client client)
 		{
-			// TODO: Coal bag
 			ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
 			if (inventory == null) {
 				return 0;
