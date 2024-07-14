@@ -41,32 +41,38 @@ public interface ActionProgressConfig extends Config
 			description = "Enable/Disable magic specific actions.",
 			position = 12
 	) String MAGIC = "Magic actions";
+
+	@ConfigSection(
+			name = "Woodcutting actions",
+			description = "Enable/Disable woodcutting specific actions.",
+			position = 13
+	) String WOODCUTTING = "Woodcutting actions";
 	@ConfigSection(
 			name = "Farming actions",
 			description = "Enable/Disable Farming actions.",
-			position = 13
+			position = 14
 	) String FARMING = "Farming actions";
 	@ConfigSection(
 			name = "Tempoross actions",
 			description = "Enable/Disable tempoross specific actions.",
-			position = 14
+			position = 15
 	) String TEMPOROSS = "Tempoross actions";
 	@ConfigSection(
 			name = "Wintertodt actions (not yet supported)",
 			description = "Enable/Disable wintertodt specific actions.",
-			position = 15,
+			position = 16,
 			closedByDefault = true
 	) String WINTERTODT = "Wintertodt actions";
 	@ConfigSection(
 			name = "Guardian of the Rift actions",
 			description = "Enable/Disable guardian of the rift specific actions.",
-			position = 16,
+			position = 17,
 			closedByDefault = true
 	) String GUARDIAN_OF_THE_RIFT = "Guardian of the Rift actions";
 	@ConfigSection(
 			name = "Miscellaneous actions",
 			description = "Enable/Disable miscellaneous actions.",
-			position = 17
+			position = 18
 	) String MISCELLANEOUS = "Miscellaneous actions";
 
 	@ConfigItem(
@@ -512,6 +518,14 @@ public interface ActionProgressConfig extends Config
 	{
 		return true;
 	}
+
+	@ConfigItem(
+			name = "Creating forester's ration",
+			keyName = "woodcutting.rations",
+			description = "Enable/Disable monitoring creating forester's ration.",
+			section = WOODCUTTING
+	)
+	default boolean forestersRation() { return true; }
 
 	@ConfigItem(
 			name = "Creating ultracompost",

@@ -43,7 +43,9 @@ Displays an indicator showing how much progress you've made on your current acti
     - Charge orb
 	- String jewellery
     - Creating planks
-    - Creating tablets  
+    - Creating tablets
+- Woodcutting
+    - Forester's ration 
 - Farming
    - Creating ultracompost 
 - Tempoross
