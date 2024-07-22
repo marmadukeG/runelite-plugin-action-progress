@@ -163,6 +163,7 @@ public class ChatboxDetector extends ActionDetector
             new Product(FLETCH_STRING_BOW, MAPLE_SHORTBOW, new Ingredient(MAPLE_SHORTBOW_U), new Ingredient(BOW_STRING)),
             new Product(FLETCH_STRING_BOW, YEW_SHORTBOW, new Ingredient(YEW_SHORTBOW_U), new Ingredient(BOW_STRING)),
             new Product(FLETCH_STRING_BOW, MAGIC_SHORTBOW, new Ingredient(MAGIC_SHORTBOW_U), new Ingredient(BOW_STRING)),
+			new Product(FLETCH_SPINNING, BOW_STRING, new Ingredient(FLAX)),
 			new Product(FLETCH_SHIELD, OAK_SHIELD, new Ingredient(OAK_LOGS, 2)),
 			new Product(FLETCH_SHIELD, WILLOW_SHIELD, new Ingredient(WILLOW_LOGS, 2)),
 			new Product(FLETCH_SHIELD, MAPLE_SHIELD, new Ingredient(MAPLE_LOGS, 2)),

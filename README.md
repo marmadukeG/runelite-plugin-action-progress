@@ -34,6 +34,7 @@ Displays an indicator showing how much progress you've made on your current acti
 	- Arrows & bolts
 	- Creating bows, crossbows & shields
     - Javelins
+    - Spinning bowstring
 - Herblore
 	- Herb cleaning
 	- Mixing potions
@@ -64,6 +65,8 @@ Displays an indicator showing how much progress you've made on your current acti
     
 
 ## Changes
+- `1.16`
+	- Add support for spinning bowstring
 - `1.15`
 	- Add support for jug of sunfire wine
 - `1.14`

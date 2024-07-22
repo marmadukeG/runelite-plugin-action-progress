@@ -388,6 +388,17 @@ public interface ActionProgressConfig extends Config
 	}
 
 	@ConfigItem(
+			name = "Spinning flax",
+			keyName = "fletching.spinning",
+			description = "Enable/Disable monitoring spinning flax into bowstring.",
+			section = FLETCHING
+	)
+	default boolean fletchSpinning()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			name = "Making shields",
 			keyName = "fletching.shields",
 			description = "Enable/Disable monitoring cutting logs into shields.",
