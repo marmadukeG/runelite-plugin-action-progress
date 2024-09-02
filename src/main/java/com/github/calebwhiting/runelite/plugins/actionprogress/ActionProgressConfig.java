@@ -211,6 +211,17 @@ public interface ActionProgressConfig extends Config
 	}
 
 	@ConfigItem(
+			name = "Dairy churning",
+			keyName = "cooking.churning",
+			description = "Enable/Disable monitoring churning dairy products.",
+			section = COOKING
+	)
+	default boolean cookingChurning()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			name = "Smelting Items",
 			keyName = "smithing.smelting",
 			description = "Enable/Disable monitoring smelting.",

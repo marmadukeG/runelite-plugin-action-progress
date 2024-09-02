@@ -15,6 +15,7 @@ Displays an indicator showing how much progress you've made on your current acti
 	- Cutting fruits
 	- Mixing pastry & wine
 	- Topping pizza
+    - Churning dairy products 
 - Smithing
 	- Smelting
     - Smithing
