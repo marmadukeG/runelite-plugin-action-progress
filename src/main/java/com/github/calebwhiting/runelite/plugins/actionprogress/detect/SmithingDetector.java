@@ -16,12 +16,14 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.input.KeyListener;
 import net.runelite.client.input.KeyManager;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
 @Singleton
 public class SmithingDetector extends ActionDetector implements KeyListener
 {
@@ -70,11 +72,19 @@ public class SmithingDetector extends ActionDetector implements KeyListener
 		if (waitingForSmithingSelection && event.getKeyCode() == KeyEvent.VK_SPACE)
 		{
 			int availableBars = this.client.getVarpValue(VAR_AVAILABLE_MATERIALS);
+
+			if(numberOfBarsForSelectedItem == 0)
+			{
+				return;
+			}
+
 			if(isWearingSmithOutfit()){
 				this.actionManager.setAction(Action.SMITHING_WITH_SMITH_OUTFIT, (availableBars / numberOfBarsForSelectedItem), smithingItemid);
+
 			}
 			else {
 				this.actionManager.setAction(Action.SMITHING, (availableBars / numberOfBarsForSelectedItem), smithingItemid);
+
 			}
 			
 		}
@@ -126,8 +136,14 @@ public class SmithingDetector extends ActionDetector implements KeyListener
 			indexToItemId.put(index, itemId);
 
 			int var_index = this.client.getVarbitValue(VAR_SELECTED_SMITHING_INDEX);
-			smithingItemid = indexToItemId.get(var_index);
-			numberOfBarsForSelectedItem = client.getEnum(ENUM_SMITHING_ITEM_BAR).getIntValue(smithingItemid);
+
+			try {
+				smithingItemid = indexToItemId.get(var_index);
+				numberOfBarsForSelectedItem = client.getEnum(ENUM_SMITHING_ITEM_BAR).getIntValue(smithingItemid);
+			}catch (NullPointerException e){
+				log.debug("Item not found in indexToItemId map");
+			}
+
 		}
 	}
 
