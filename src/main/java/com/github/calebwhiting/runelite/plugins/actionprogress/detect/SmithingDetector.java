@@ -3,6 +3,7 @@ package com.github.calebwhiting.runelite.plugins.actionprogress.detect;
 import com.github.calebwhiting.runelite.plugins.actionprogress.Action;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.ItemContainer;
@@ -13,6 +14,7 @@ import net.runelite.api.events.VarClientIntChanged;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.input.KeyListener;
 import net.runelite.client.input.KeyManager;
@@ -23,10 +25,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Singleton
+@Slf4j
 public class SmithingDetector extends ActionDetector implements KeyListener
 {
 
 	@Inject private Client client;
+
+	@Inject private ClientThread clientThread;
 	
 	@Inject private KeyManager keyManager;
 
