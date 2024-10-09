@@ -16,14 +16,12 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.input.KeyListener;
 import net.runelite.client.input.KeyManager;
-import lombok.extern.slf4j.Slf4j;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Slf4j
 @Singleton
 public class SmithingDetector extends ActionDetector implements KeyListener
 {
@@ -71,22 +69,20 @@ public class SmithingDetector extends ActionDetector implements KeyListener
 	{
 		if (waitingForSmithingSelection && event.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			int availableBars = this.client.getVarpValue(VAR_AVAILABLE_MATERIALS);
+			clientThread.invokeLater(() -> {
+				int availableBars = this.client.getVarpValue(VAR_AVAILABLE_MATERIALS);
+				if(numberOfBarsForSelectedItem == 0)
+				{
+					return;
+				}
 
-			if(numberOfBarsForSelectedItem == 0)
-			{
-				return;
-			}
-
-			if(isWearingSmithOutfit()){
-				this.actionManager.setAction(Action.SMITHING_WITH_SMITH_OUTFIT, (availableBars / numberOfBarsForSelectedItem), smithingItemid);
-
-			}
-			else {
-				this.actionManager.setAction(Action.SMITHING, (availableBars / numberOfBarsForSelectedItem), smithingItemid);
-
-			}
-			
+				if(isWearingSmithOutfit()){
+					this.actionManager.setAction(Action.SMITHING_WITH_SMITH_OUTFIT, (availableBars / numberOfBarsForSelectedItem), smithingItemid);
+				}
+				else {
+					this.actionManager.setAction(Action.SMITHING, (availableBars / numberOfBarsForSelectedItem), smithingItemid);
+				}
+			});
 		}
 	}
 
