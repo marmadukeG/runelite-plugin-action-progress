@@ -183,13 +183,13 @@ public class SmithingDetector extends ActionDetector implements KeyListener
 
 	private boolean isWearingSmithOutfit(){
 		ItemContainer gear = this.client.getItemContainer(InventoryID.EQUIPMENT);
-		if (gear.contains(ItemID.SMITHS_TUNIC) && 
-			gear.contains(ItemID.SMITHS_TROUSERS) && 
-			gear.contains(ItemID.SMITHS_BOOTS) && 
-			(gear.contains(ItemID.SMITHS_GLOVES) || gear.contains(ItemID.SMITHS_GLOVES_I))){
-			return true;
+		if (gear == null) {
+			return false;
 		}
-		return false;
-	}
+        return gear.contains(ItemID.SMITHS_TUNIC) &&
+                gear.contains(ItemID.SMITHS_TROUSERS) &&
+                gear.contains(ItemID.SMITHS_BOOTS) &&
+                (gear.contains(ItemID.SMITHS_GLOVES) || gear.contains(ItemID.SMITHS_GLOVES_I));
+    }
 
 }
