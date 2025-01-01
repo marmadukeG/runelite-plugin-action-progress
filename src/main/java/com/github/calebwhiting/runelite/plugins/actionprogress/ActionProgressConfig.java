@@ -1,10 +1,7 @@
 package com.github.calebwhiting.runelite.plugins.actionprogress;
 
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.*;
+
 import java.awt.Color;
 
 @ConfigGroup("actionprogress")
@@ -66,8 +63,7 @@ public interface ActionProgressConfig extends Config
 	@ConfigSection(
 			name = "Guardian of the Rift actions",
 			description = "Enable/Disable guardian of the rift specific actions.",
-			position = 17,
-			closedByDefault = true
+			position = 17
 	) String GUARDIAN_OF_THE_RIFT = "Guardian of the Rift actions";
 	@ConfigSection(
 			name = "Miscellaneous actions",
@@ -92,9 +88,9 @@ public interface ActionProgressConfig extends Config
 			description = "Enable/Disable notifications when actions are completed or interrupted.",
 			position = 1
 	)
-	default boolean notifyWhenFinished()
+	default Notification notifyWhenFinished()
 	{
-		return true;
+		return Notification.OFF;
 	}
 
 	@ConfigItem(

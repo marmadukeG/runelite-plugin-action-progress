@@ -156,8 +156,8 @@ public class ActionProgressPlugin extends Plugin
 			log.debug("ignoring fast failure");
 			return;
 		}
-		if (this.config.notifyWhenFinished() && !evt.isInterrupted()) {
-			this.notifier.notify("All of your items have been processed!");
+		if (this.config.notifyWhenFinished().isEnabled() && !evt.isInterrupted()) {
+			this.notifier.notify(config.notifyWhenFinished(), "All of your items have been processed!");
 		}
 	}
 
