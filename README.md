@@ -66,6 +66,11 @@ Displays an indicator showing how much progress you've made on your current acti
     
 
 ## Changes
+- `1.17`
+	- Add support for tome of earth
+    - Add support for forgotten brew 4
+    - Add support for custom notifications
+    - Make guthix rest a 3 ticks action
 - `1.16`
 	- Add support for spinning bowstring
 - `1.15`
