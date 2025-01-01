@@ -718,7 +718,7 @@ public interface Magic
 	{
 		AIR("Air", RuneIDs.AIR.build(), StaveIDs.AIR.build()),
 		WATER("Water", RuneIDs.WATER.build(), new IDs(StaveIDs.WATER, ItemID.TOME_OF_WATER).build()),
-		EARTH("Earth", RuneIDs.EARTH.build(), StaveIDs.EARTH.build()),
+		EARTH("Earth", RuneIDs.EARTH.build(), new IDs(StaveIDs.EARTH, ItemID.TOME_OF_EARTH).build()),
 		FIRE("Fire", RuneIDs.FIRE.build(), new IDs(StaveIDs.FIRE, ItemID.TOME_OF_FIRE).build()),
 		MIND("Mind", RuneIDs.MIND.build()),
 		BODY("Body", RuneIDs.BODY.build()),
