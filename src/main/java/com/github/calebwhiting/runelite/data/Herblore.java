@@ -111,6 +111,7 @@ public interface Herblore
             new Recipe(ItemID.SARADOMIN_BREW3, Ingredients.TOADFLAX_UNF, Ingredients.CRUSHED_NEST),
             new Recipe(ItemID.WEAPON_POISON_5940, Ingredients.WEAPON_POISON_PP_UNF, Ingredients.POISON_IVY_BERRIES),
             new Recipe(ItemID.ANCIENT_BREW3, Ingredients.DWARF_WEED_UNF, Ingredients.NIHIL_DUST),
+			new Recipe(ItemID.FORGOTTEN_BREW4, Ingredients.ANCIENT_BREW_4, Ingredients.ANCIENT_ESSENCE.clone(80)),
             new Recipe(ItemID.SUPER_COMBAT_POTION4, Ingredients.SUPER_ATTACK_4, Ingredients.SUPER_STRENGTH_4, Ingredients.SUPER_DEFENCE_4, Ingredients.TORSTOL),
             new Recipe(ItemID.SUPER_COMBAT_POTION4, Ingredients.SUPER_ATTACK_4, Ingredients.SUPER_STRENGTH_4, Ingredients.SUPER_DEFENCE_4, Ingredients.TORSTOL_UNF),
             new Recipe(ItemID.SUPER_ANTIFIRE_POTION4, Ingredients.ANTIFIRE_4, Ingredients.CRUSHED_SUPERIOR_DRAGON_BONES),
@@ -377,6 +378,8 @@ public interface Herblore
 		Ingredient CAVE_NIGHTSHADE = new Ingredient(ItemID.CAVE_NIGHTSHADE);
 		Ingredient AMYLASE_CRYSTAL = new Ingredient(ItemID.AMYLASE_CRYSTAL);
 		Ingredient CACTUS_SPINE = new Ingredient(ItemID.CACTUS_SPINE);
+		Ingredient ANCIENT_BREW_4 = new Ingredient(ItemID.ANCIENT_BREW4);
+		Ingredient ANCIENT_ESSENCE = new Ingredient(ItemID.ANCIENT_ESSENCE);
 
 	}
 
