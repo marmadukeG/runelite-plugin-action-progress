@@ -325,6 +325,7 @@ public class ChatboxDetector extends ActionDetector
 		 * Herblore
 		 */
 		this.registerAction(HERB_MIX_TAR, GUAM_TAR, MARRENTILL_TAR, TARROMIN_TAR, HARRALANDER_TAR);
+		this.registerAction(HERB_MIX_POTIONS_3T, GUTHIX_REST3);
 		for (Recipe recipe : Herblore.UNFINISHED_POTIONS) {
 			this.registerAction(HERB_MIX_UNFINISHED, recipe.getProductId());
 		}

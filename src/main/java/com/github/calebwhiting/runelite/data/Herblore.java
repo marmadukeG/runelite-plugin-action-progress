@@ -53,10 +53,6 @@ public interface Herblore
             new Recipe(HerbTeaMix.HERB_TEA_MIX_HMG, Ingredients.HERB_TEA_MIX_GM, Ingredients.HARRALANDER),
             new Recipe(HerbTeaMix.HERB_TEA_MIX_HMG, Ingredients.HERB_TEA_MIX_HM, Ingredients.GUAM_LEAF),
             new Recipe(HerbTeaMix.HERB_TEA_MIX_HMG, Ingredients.HERB_TEA_MIX_HG, Ingredients.MARRENTILL),
-            // Technically not unfinished, but it only takes 1 tick to make
-            new Recipe(ItemID.GUTHIX_REST3, Ingredients.HERB_TEA_MIX_GGH, Ingredients.MARRENTILL),
-            new Recipe(ItemID.GUTHIX_REST3, Ingredients.HERB_TEA_MIX_GGM, Ingredients.HARRALANDER),
-            new Recipe(ItemID.GUTHIX_REST3, Ingredients.HERB_TEA_MIX_HMG, Ingredients.GUAM_LEAF)
             // @formatter:on
 	};
 	Recipe[] POTIONS = {

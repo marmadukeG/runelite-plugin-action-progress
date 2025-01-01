@@ -47,6 +47,7 @@ public enum Action
 	SUNFIRE_WINE("Grinding", ActionProgressConfig::grinding, ActionIcon.SPRITE_TOTAL, 1, 4),
 	HERB_CLEAN("Cleaning", ActionProgressConfig::herbCleaning, ActionIcon.SPRITE_HERBLORE, 0, 2),
 	HERB_MIX_POTIONS("Mixing", ActionProgressConfig::herbPotions, ActionIcon.SPRITE_HERBLORE, 2),
+	HERB_MIX_POTIONS_3T("Mixing", ActionProgressConfig::herbPotions, ActionIcon.SPRITE_HERBLORE, 0, 3),
 	HERB_MIX_TAR("Mixing", ActionProgressConfig::herbTar, ActionIcon.SPRITE_HERBLORE, 2, 3),
 	HERB_MIX_UNFINISHED("Mixing", ActionProgressConfig::herbPotions, ActionIcon.SPRITE_HERBLORE, 2, 1),
 	MAGIC_CREATE_TABLET("Enchanting", ActionProgressConfig::magicTablets, ActionIcon.SPRITE_MAGIC, 2, 4),
