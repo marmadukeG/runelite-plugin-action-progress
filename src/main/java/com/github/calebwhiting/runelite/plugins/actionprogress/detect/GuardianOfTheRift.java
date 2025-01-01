@@ -55,11 +55,11 @@ public class GuardianOfTheRift extends ActionDetector
 
 	@Inject private InventoryManager inventoryManager;
 
-	@Inject protected InterruptManager intterupManager;
+	@Inject protected InterruptManager interruptManager;
 
 	private boolean checkInMainRegion(){
 		int[] currentMapRegions = client.getMapRegions();
-		return Arrays.stream(currentMapRegions).anyMatch(x -> x == MINIGAME_MAIN_REGION);
+		return currentMapRegions != null && Arrays.stream(currentMapRegions).anyMatch(x -> x == MINIGAME_MAIN_REGION);
 	}
 
 	@Subscribe
@@ -76,10 +76,10 @@ public class GuardianOfTheRift extends ActionDetector
 			currentCatalyticRewardPoints--;
 		}
 		else if(msg.contains("The Great Guardian was defeated!")){
-			intterupManager.interrupt("Guardian of the Rift game concluded");
+			interruptManager.interrupt("Guardian of the Rift game concluded");
 		}
 		else if(rewardPointMatcher.find()) {
-			intterupManager.interrupt("Guardian of the Rift game concluded");
+			interruptManager.interrupt("Guardian of the Rift game concluded");
 			currentElementalRewardPoints = Integer.parseInt(rewardPointMatcher.group(1).replaceAll(",", ""));
 			currentCatalyticRewardPoints = Integer.parseInt(rewardPointMatcher.group(2).replaceAll(",", ""));
 		}
