@@ -43,16 +43,8 @@ public class TemporossDetector extends ActionDetector
 		Action action = this.actionManager.getCurrentAction();
 		Player me = evt.getLocalPlayer();
 		int region = WorldPoint.fromLocalInstance(this.client, me.getLocalLocation()).getRegionID();
-		if (region != TEMPOROSS_REGION) {
-			log.debug("not in tempoross region");
-			return;
-		}
 		if (action == Action.TEMPOROSS_FILL_CRATE || action == Action.TEMPOROSS_COOKING) {
 			log.debug("action is already {}", action);
-			return;
-		}
-		if (me.getAnimation() != AnimationID.COOKING_RANGE) {
-			log.debug("incorrect animation");
 			return;
 		}
 		Actor interacting = me.getInteracting();

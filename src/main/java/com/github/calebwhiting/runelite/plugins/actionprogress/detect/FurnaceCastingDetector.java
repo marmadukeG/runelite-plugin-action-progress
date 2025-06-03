@@ -4,40 +4,27 @@ import com.github.calebwhiting.runelite.data.Crafting;
 import com.github.calebwhiting.runelite.plugins.actionprogress.Action;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.MenuAction;
-import net.runelite.api.widgets.Widget;
+import net.runelite.api.Player;
+import net.runelite.api.events.WidgetClosed;
+import net.runelite.api.gameval.InterfaceID;
+import net.runelite.api.gameval.VarbitID;
 import net.runelite.client.eventbus.Subscribe;
 
-import java.util.Arrays;
+import static net.runelite.api.gameval.AnimationID.HUMAN_FURNACE;
+
 
 /**
  * Detects actions initiated from the furnace casting interface (Gold/Silver products)
  */
+@Slf4j
 public class FurnaceCastingDetector extends ActionDetector
 {
-
-	/**
-	 * Widgets that contain item buttons in the silver casting interface.
-	 */
-	private static final int[] FURNACE_SILVER_PARENTS;
-
-	/**
-	 * Widgets that contain item buttons in the gold casting interface.
-	 */
-	private static final int[] FURNACE_GOLD_PARENTS;
-
 	/**
 	 * Indicates how many items are to be created in the crafting dialogue.
 	 */
 	private static final int VAR_FURNACE_MAKE_AMOUNT = 2224;
-
-	static {
-		FURNACE_SILVER_PARENTS = new int[]{393222, 393226, 393230, 393234, 393238};
-		Arrays.sort(FURNACE_SILVER_PARENTS);
-		FURNACE_GOLD_PARENTS = new int[]{29229059, 29229062, 29229073, 29229076, 29229077, 29229086, 29229091, 29229103, 29229107};
-		Arrays.sort(FURNACE_GOLD_PARENTS);
-	}
 
 	@Inject private Client client;
 
@@ -47,28 +34,47 @@ public class FurnaceCastingDetector extends ActionDetector
 		this.registerAction(Action.CRAFT_CAST_GOLD_AND_SILVER, Crafting.SILVER_AND_GOLD_ITEMS);
 	}
 
+	/**
+	 * Consumes Widget Closed event and runs if the widget was our gold or silver casting
+	 * @param evt Widget Closed Event
+	 */
 	@Subscribe
 	@Singleton
-	public void onMenuOptionClicked(net.runelite.api.events.MenuOptionClicked evt)
-	{
-		if (evt.getParam1() <= 0 || evt.getMenuAction() != MenuAction.CC_OP) {
-			return;
-		}
-		Widget widget = this.client.getWidget(evt.getParam1());
-		if (widget == null) {
-			return;
-		}
-		int actionCount = this.client.getVarpValue(VAR_FURNACE_MAKE_AMOUNT);
-		if (Arrays.binarySearch(FURNACE_SILVER_PARENTS, widget.getParentId()) >= 0) {
-			Widget itemContainer = widget.getChild(0);
-			if (itemContainer != null) {
-				int product = itemContainer.getItemId();
-				this.setActionByItemId(product, actionCount);
+	public void onWidgetClosed(WidgetClosed evt){
+
+		// Gold Casting
+		if(evt.getGroupId() == InterfaceID.CRAFTING_GOLD) {
+			// Get the player's active animation, if there is no animation this also fails
+			Player me = this.client.getLocalPlayer();
+			if (me.getAnimation() != HUMAN_FURNACE) {
+				return;
 			}
-		} else if (Arrays.binarySearch(FURNACE_GOLD_PARENTS, widget.getParentId()) >= 0) {
-			int product = widget.getItemId();
-			this.setActionByItemId(product, actionCount);
+
+			// action count is a player value while last type is a varbit, we may need to update VAR_FURNACE_MAKE_AMOUNT
+			int actionCount = this.client.getVarpValue(VAR_FURNACE_MAKE_AMOUNT);
+			int lastType =	this.client.getVarbitValue(VarbitID.CRAFTING_GOLD_ITEM_LASTTYPE) - 1; // minus 1 for array trav
+
+			// error check so we don't out of bounds in case they ever change the method by which they count
+			if (lastType >= 0) {
+				this.setActionByItemId(Crafting.GOLD_ITEMS[lastType], actionCount);
+			}
+		}
+		// Silver Casting
+		else if(evt.getGroupId() == InterfaceID.SILVER_CRAFTING) {
+			// Get the player's active animation, if there is no animation this also fails
+			Player me = this.client.getLocalPlayer();
+			if (me.getAnimation() != HUMAN_FURNACE) {
+				return;
+			}
+
+			// action count is a player value while last type is a varbit, we may need to update VAR_FURNACE_MAKE_AMOUNT
+			int actionCount = this.client.getVarpValue(VAR_FURNACE_MAKE_AMOUNT);
+			int lastType =	this.client.getVarbitValue(VarbitID.CRAFTING_SILVER_ITEM_LASTTYPE) - 1; // minus 1 for array trav
+
+			// error check so we don't out of bounds in case they ever change the method by which they count
+			if (lastType >= 0) {
+				this.setActionByItemId(Crafting.SILVER_ITEMS[lastType], actionCount);
+			}
 		}
 	}
-
 }
