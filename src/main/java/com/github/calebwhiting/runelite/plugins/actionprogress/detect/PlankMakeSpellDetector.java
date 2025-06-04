@@ -6,10 +6,10 @@ import com.github.calebwhiting.runelite.plugins.actionprogress.ActionProgressCon
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
+import net.runelite.api.gameval.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
+import net.runelite.api.gameval.ItemID;
 import net.runelite.api.MenuAction;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.widgets.Widget;
@@ -32,11 +32,14 @@ public class PlankMakeSpellDetector extends ActionDetector
 		if (evt.getMenuAction() != MenuAction.WIDGET_TARGET_ON_WIDGET) {
 			return;
 		}
-		ItemContainer inventory = this.client.getItemContainer(InventoryID.INVENTORY);
+		ItemContainer inventory = this.client.getItemContainer(InventoryID.INV);
 		if (inventory == null) {
 			return;
 		}
-		if (!evt.getMenuTarget().contains("<col=00ff00>Plank Make</col><col=ffffff> ->")) {
+
+		// There is not a space in the middle of Plank Make, it is a '\u00A0' afaik
+		// We are matching "Plank[standard ASCII plus the whitespace codepoints]Make"
+		if(!evt.getMenuTarget().matches(".*Plank\\p{Z}Make.*")){
 			return;
 		}
 		for (Magic.PlankMakeSpell plankMakeSpell : Magic.PlankMakeSpell.values()) {
@@ -46,13 +49,13 @@ public class PlankMakeSpellDetector extends ActionDetector
 				continue;
 			}
 			int itemId = evt.getItemId();
-			if (plankMakeSpell.getPlank() != itemId || !inventory.contains(ItemID.COINS_995)) {
+			if (plankMakeSpell.getPlank() != itemId || !inventory.contains(ItemID.COINS)) {
 				continue;
 			}
 
 			int coinsQuantity = 0;
 			for (Item item : inventory.getItems()) {
-				if(item.getId() == ItemID.COINS_995){
+				if(item.getId() == ItemID.COINS){
 					coinsQuantity = item.getQuantity();
 				}
 			}
