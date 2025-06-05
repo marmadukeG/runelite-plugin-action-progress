@@ -66,6 +66,9 @@ Displays an indicator showing how much progress you've made on your current acti
     
 
 ## Changes
+- `1.18`
+	- Updating timing for fire tending
+ 	- Rework gold and silver casting
 - `1.17`
 	- Add support for tome of earth
     - Add support for forgotten brew 4
