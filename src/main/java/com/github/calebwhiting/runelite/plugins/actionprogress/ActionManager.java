@@ -10,7 +10,7 @@ import com.google.inject.Singleton;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
+import net.runelite.api.*;
 import net.runelite.api.events.GameTick;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
@@ -59,11 +59,16 @@ public class ActionManager
 
 	@Getter @Setter private int currentProductId = -1;
 
-	private static int calculateActionTicks(Action action, int actionCount)
+	private int calculateActionTicks(Action action, int actionCount)
 	{
 		int nTicksElapsed = 0;
-		int[] timings = action.getTickTimes();
-		//Could be done more cleanly elsewhere, but it would require changing everything from int to double
+		int[] timings = action.getTickTimes().clone();
+		if (action.name().startsWith("FLETCH") && isFastKnifeEquipped()) {
+			for (int i = 0; i < timings.length; i++) {
+				timings[i] = Math.max(1, timings[i] - 1); // mutate the clone only
+			}
+		}
+		// Could be done more cleanly elsewhere, but it would require changing everything from int to double
 		int realActionCount = action == Action.SMITHING_WITH_SMITH_OUTFIT ? (int) (actionCount * .8) : actionCount;
 		for (int i = 0; i < realActionCount; i++) {
 			nTicksElapsed += timings[i >= timings.length ? timings.length - 1 : i];
@@ -143,7 +148,12 @@ public class ActionManager
 		}
 		int actions = 0;
 		int rem = this.client.getTickCount() - this.actionStartTick;
-		int[] timings = this.currentAction.getTickTimes();
+		int[] timings = this.currentAction.getTickTimes().clone();
+		if (this.currentAction.name().startsWith("FLETCH") && isFastKnifeEquipped()) {
+			for (int i = 0; i < timings.length; i++) {
+				timings[i] = Math.max(1, timings[i] - 1); // mutate the clone only
+			}
+		}
 		for (int tickTime : timings) {
 			rem -= tickTime;
 			if (rem >= 0) {
@@ -173,4 +183,12 @@ public class ActionManager
 		return Math.round((ticksLeft * TickManager.PERFECT_TICK_TIME) - timeSinceTick);
 	}
 
+	private boolean isFastKnifeEquipped()
+	{
+		final ItemContainer equipment = client.getItemContainer(InventoryID.EQUIPMENT);
+		if (equipment == null) return false;
+
+		Item offHand = equipment.getItem(EquipmentInventorySlot.SHIELD.getSlotIdx());
+		return offHand != null && offHand.getId() == ItemID.FLETCHING_KNIFE;
+	}
 }
