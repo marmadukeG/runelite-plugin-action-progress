@@ -63,7 +63,7 @@ public class ActionManager
 	{
 		int nTicksElapsed = 0;
 		int[] timings = action.getTickTimes().clone();
-		if (action.name().startsWith("FLETCH") && isFastKnifeEquipped()) {
+		if ((action.name().startsWith("FLETCH") && action.getDescription().equals("Cutting")) && isFastKnifeEquippedOrInInventory()) {
 			for (int i = 0; i < timings.length; i++) {
 				timings[i] = Math.max(1, timings[i] - 1); // mutate the clone only
 			}
@@ -149,7 +149,7 @@ public class ActionManager
 		int actions = 0;
 		int rem = this.client.getTickCount() - this.actionStartTick;
 		int[] timings = this.currentAction.getTickTimes().clone();
-		if (this.currentAction.name().startsWith("FLETCH") && isFastKnifeEquipped()) {
+		if ((this.currentAction.name().startsWith("FLETCH") && this.currentAction.getDescription().equals("Cutting")) && isFastKnifeEquippedOrInInventory()) {
 			for (int i = 0; i < timings.length; i++) {
 				timings[i] = Math.max(1, timings[i] - 1); // mutate the clone only
 			}
@@ -183,12 +183,32 @@ public class ActionManager
 		return Math.round((ticksLeft * TickManager.PERFECT_TICK_TIME) - timeSinceTick);
 	}
 
-	private boolean isFastKnifeEquipped()
+	private boolean isFastKnifeEquippedOrInInventory()
 	{
+		// Check if equipped in off-hand
 		final ItemContainer equipment = client.getItemContainer(InventoryID.EQUIPMENT);
-		if (equipment == null) return false;
+		if (equipment != null)
+		{
+			Item offHand = equipment.getItem(EquipmentInventorySlot.SHIELD.getSlotIdx());
+			if (offHand != null && offHand.getId() == ItemID.FLETCHING_KNIFE)
+			{
+				return true;
+			}
+		}
 
-		Item offHand = equipment.getItem(EquipmentInventorySlot.SHIELD.getSlotIdx());
-		return offHand != null && offHand.getId() == ItemID.FLETCHING_KNIFE;
+		// Check if present in inventory
+		final ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory != null)
+		{
+			for (Item item : inventory.getItems())
+			{
+				if (item != null && item.getId() == ItemID.FLETCHING_KNIFE)
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 }
